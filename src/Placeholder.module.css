@@ -1,0 +1,47 @@
+.root {
+  background-color: #1967d2;
+  height: 2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-50%);
+}
+
+/*实心三角箭头*/
+.root:before {
+  border-color: transparent transparent transparent red;
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  content: '';
+  display: inline-block;
+  height: 0;
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+
+}
+
+.rootBg {
+  background-color: rgba(25, 103, 210, 0.2);
+  height: 2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.rootBg:before {
+  border-color: transparent transparent transparent rgba(25, 103, 210, 0.2);
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  content: '';
+  display: inline-block;
+  height: 0;
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+}
