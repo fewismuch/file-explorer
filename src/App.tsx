@@ -8,11 +8,11 @@ import {
 } from '@minoru/react-dnd-treeview';
 import {SampleData} from './sampleData';
 import './App.css';
-import {CustomDragPreview} from "./CustomDragPreview.tsx";
+import {CustomDragPreview} from "./CustomDragPreview";
 // @ts-ignore
 import styles from "./App.module.css";
-import {CustomNode} from "./CustomNode.tsx";
-import {Placeholder} from "./Placeholder.tsx";
+import {CustomNode} from "./CustomNode";
+import {Placeholder} from "./Placeholder";
 
 const getLastId = (treeData) => {
   const reversedArray = [...treeData].sort((a, b) => {
@@ -127,6 +127,7 @@ function App() {
         </DndProvider>
       </div>
       <hr/>
+
       <div key={2} className="app">
         <DndProvider backend={MultiBackend} options={getBackendOptions()}>
           <Tree
