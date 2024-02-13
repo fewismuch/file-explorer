@@ -1,13 +1,26 @@
 {
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "lib": ["DOM", "ES2022"],
-    "moduleResolution": "node",
-    "target": "ES2022",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [
+        ".dumi/tmp/*"
+      ],
+      "file-explorer": [
+        "src"
+      ],
+      "file-explorer/*": [
+        "src/*",
+        "*"
+      ]
+    }
   },
-  "include": ["src/**/*"]
+  "include": [
+    ".dumirc.ts",
+    "src/**/*"
+  ]
 }
