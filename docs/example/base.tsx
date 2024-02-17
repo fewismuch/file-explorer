@@ -2,7 +2,7 @@
  * title: 我是标题
  * description: 我是简介，我可以用 `Markdown` 来编写
  */
-import { FileExplorer } from '@rainetian/file-explorer'
+import FileExplorer from '@rainetian/file-explorer'
 import React from 'react'
 
 import { filesData } from './filesData'

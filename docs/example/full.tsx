@@ -1,4 +1,4 @@
-import { FileExplorer, IFileExplorerRef, INode } from '@rainetian/file-explorer'
+import FileExplorer, { IFileExplorerRef, INode } from '@rainetian/file-explorer'
 import React, { useRef, useState } from 'react'
 
 import { filesData } from './filesData'
