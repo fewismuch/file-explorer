@@ -1,9 +1,10 @@
-import React, {useState} from "react";
-import {FileExplorer, INode} from "@carbontian/file-explorer";
-import {filesData} from "./filesData";
+import { FileExplorer, INode } from '@rainetian/file-explorer'
+import React, { useState } from 'react'
 
-export default () => {
-  const [treeData, setTreeData] = useState<INode[]>(filesData);
+import { filesData } from './filesData'
+
+const App = () => {
+  const [treeData, setTreeData] = useState<INode[]>(filesData)
 
   const handleChange = (newData: INode[]) => {
     setTreeData(newData)
@@ -11,12 +12,8 @@ export default () => {
 
   return (
     <div>
-      <FileExplorer
-        data={treeData}
-        rootId={0}
-        onChange={handleChange}
-        enableDrag
-      />
+      <FileExplorer data={treeData} rootId={0} onChange={handleChange} enableDrag />
     </div>
   )
 }
+export default App

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export interface IFileExplorerRef {
   addFile: () => void
@@ -6,16 +6,16 @@ export interface IFileExplorerRef {
 }
 
 export interface INode {
-  id: number | string;
-  parent: number | string;
-  text: string;
+  id: number | string
+  parent: number | string
+  text: string
   /**
    * 是否可拖拽节点放置到此节点
    */
-  droppable?: boolean;
+  droppable?: boolean
 
   // 其他属性
-  [propName: string]: any;
+  [propName: string]: any
 }
 
 export interface IFileExplorer {
@@ -23,11 +23,16 @@ export interface IFileExplorer {
   /**
    * parent id of the root node,default ''
    */
-  rootId: number | string;
-  data: INode[];
+  rootId: number | string
+  data: INode[]
   titleRender?: (node: INode) => React.ReactNode
   switcherIcon?: React.ReactNode
-  onChange?: (newTree: INode[], oldTree: INode[], action: 'create' | 'update' | 'remove' | 'drop', targetNode?: INode) => void
+  onChange?: (
+    newTree: INode[],
+    oldTree: INode[],
+    action: 'create' | 'update' | 'remove' | 'drop',
+    targetNode?: INode
+  ) => void
   onSelect?: (node: INode) => void
   canDrag?: (node?: INode) => boolean
   /**

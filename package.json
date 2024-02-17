@@ -1,9 +1,10 @@
 {
-  "name": "@carbontian/file-explorer",
-  "version": "0.0.4",
+  "name": "@rainetian/file-explorer",
+  "version": "0.0.11",
   "description": "a file explorer component",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "main": "dist/file-explorer.min.js",
   "scripts": {
     "start": "npm run dev",
     "dev": "dumi dev",
@@ -51,27 +52,27 @@
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
   },
-  "devDependencies": {
-    "@carbontian/file-explorer": "^0.0.3",
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@umijs/lint": "^4.0.0",
-    "dumi": "^2.0.2",
-    "eslint": "^8.23.0",
-    "father": "^4.1.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "prettier-plugin-organize-imports": "^3.0.0",
-    "prettier-plugin-packagejson": "^2.2.18",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "stylelint": "^14.9.1"
-  },
   "dependencies": {
     "@minoru/react-dnd-treeview": "^3.4.4",
     "react-dnd": "^16.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@rainetian/file-explorer": "^0.0.10",
+    "@rainetian/lint": "^0.1.1",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "autoprefixer": "^10.4.17",
+    "dumi": "^2.0.2",
+    "father": "^4.1.0",
+    "husky": "^8.0.1",
+    "less": "^4.2.0",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.35",
+    "postcss-import": "^16.0.1",
+    "postcss-less": "^6.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }

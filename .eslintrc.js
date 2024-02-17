@@ -1,3 +1,2 @@
-module.exports = {
-  extends: require.resolve('@umijs/lint/dist/config/eslint'),
-};
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+module.exports = require('@rainetian/lint').eslint

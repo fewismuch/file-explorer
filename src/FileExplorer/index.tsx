@@ -1,11 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {DndProvider, getBackendOptions, getDescendants, MultiBackend, Tree} from "@minoru/react-dnd-treeview";
-import {CustomNode} from "./CustomNode";
-import {DRAFT_ID, findChangedNode} from "./utils";
-import './index.less'
-import type {IFileExplorer, INode} from "./types";
+// @ts-ignore
+// prettier-ignore
+import { DndProvider,getBackendOptions,getDescendants,MultiBackend,Tree } from '@minoru/react-dnd-treeview'
+import React, { useEffect, useState } from 'react'
 
-const FileExplorer: React.FC<IFileExplorer> = (props) => {
+import { CustomNode } from './CustomNode'
+import './index.less'
+import { DRAFT_ID, findChangedNode } from './utils'
+
+import type { IFileExplorer, INode } from './types'
+
+export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   const {
     fileExplorerRef,
     data,
@@ -22,10 +26,10 @@ const FileExplorer: React.FC<IFileExplorer> = (props) => {
     initialOpen = false,
     rootId = '',
     titleRender,
-    switcherIcon
+    switcherIcon,
   } = props
   const [fileExplorerData, setFileExplorerData] = useState(data)
-  const [selectedNode, setSelectedNode] = useState<INode | undefined>();
+  const [selectedNode, setSelectedNode] = useState<INode | undefined>()
 
   const handleDrop = (newTree: INode[]) => {
     const targetNode = findChangedNode(data, newTree)
@@ -33,56 +37,53 @@ const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }
 
   const handleRemove = (id: string | number, draft?: boolean) => {
-    const removeIds = [
-      id,
-      ...getDescendants(data, id).map((node) => node.id)
-    ];
-    const newTree = data.filter((node) => !removeIds.includes(node.id));
+    const removeIds = [id, ...getDescendants(data, id).map((node) => node.id)]
+    const newTree = data.filter((node) => !removeIds.includes(node.id))
     if (draft) {
       setFileExplorerData(newTree)
       return
     }
-    onChange?.(newTree, [...data], 'remove', data.find(node => node.id === id))
-  };
-
+    onChange?.(
+      newTree,
+      [...data],
+      'remove',
+      data.find((node: any) => node.id === id)
+    )
+  }
 
   const handleCreate = (node: INode, draft?: boolean) => {
-    const newTree = [
-      ...data,
-      node
-    ]
+    const newTree = [...data, node]
     if (draft) {
       setFileExplorerData(newTree)
       return
     }
     onChange?.(newTree, [...data], 'create', node)
-  };
-
+  }
 
   const handleTextChange = (id: string | number, value: string) => {
     if (id === DRAFT_ID) {
-      const draftNode = fileExplorerData.find(node => node.id === id)!
+      const draftNode = fileExplorerData.find((node) => node.id === id)!
       handleCreate({
         ...draftNode,
         id: '',
-        text: value
+        text: value,
       })
       return
     }
-    let targetNode;
+    let targetNode
     const newTree = data.map((node) => {
       if (node.id === id) {
         targetNode = node
         return {
           ...node,
-          text: value
-        };
+          text: value,
+        }
       }
 
-      return node;
-    });
+      return node
+    })
     onChange?.(newTree, [...data], 'update', targetNode)
-  };
+  }
 
   const handleSelect = (node: INode) => {
     if (enableSelect) {
@@ -93,19 +94,27 @@ const FileExplorer: React.FC<IFileExplorer> = (props) => {
 
   useEffect(() => {
     if (fileExplorerRef) {
-      fileExplorerRef.addFile = () => handleCreate({
-        id: DRAFT_ID,
-        text: '',
-        parent: rootId,
-        droppable: false,
-      }, true)
+      fileExplorerRef.addFile = () =>
+        handleCreate(
+          {
+            id: DRAFT_ID,
+            text: '',
+            parent: rootId,
+            droppable: false,
+          },
+          true
+        )
 
-      fileExplorerRef.addFolder = () => handleCreate({
-        id: DRAFT_ID,
-        text: '',
-        parent: rootId,
-        droppable: true,
-      }, true)
+      fileExplorerRef.addFolder = () =>
+        handleCreate(
+          {
+            id: DRAFT_ID,
+            text: '',
+            parent: rootId,
+            droppable: true,
+          },
+          true
+        )
     }
   }, [])
 
@@ -119,7 +128,7 @@ const FileExplorer: React.FC<IFileExplorer> = (props) => {
         tree={fileExplorerData}
         rootId={rootId}
         enableAnimateExpand={enableAnimateExpand}
-        render={(node, {depth, isOpen, onToggle}) => (
+        render={(node, { depth, isOpen, onToggle }) => (
           <CustomNode
             node={node}
             depth={depth}
@@ -142,13 +151,11 @@ const FileExplorer: React.FC<IFileExplorer> = (props) => {
         classes={{
           root: 'file-explorer',
           draggingSource: 'file-explorer__draggingSource',
-          dropTarget: 'file-explorer__dropTarget'
+          dropTarget: 'file-explorer__dropTarget',
         }}
-        canDrag={canDrag ? canDrag : () => enableDrag}
+        canDrag={canDrag || (() => enableDrag)}
         initialOpen={initialOpen}
       />
     </DndProvider>
   )
 }
-
-export default FileExplorer;

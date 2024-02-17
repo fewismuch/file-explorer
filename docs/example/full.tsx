@@ -1,10 +1,11 @@
-import React, {useRef, useState} from 'react';
-import {FileExplorer, IFileExplorerRef} from "@carbontian/file-explorer";
-import {filesData} from "./filesData";
+import { FileExplorer, IFileExplorerRef, INode } from '@rainetian/file-explorer'
+import React, { useRef, useState } from 'react'
 
-export default () => {
+import { filesData } from './filesData'
+
+const App = () => {
   const fileExplorerRef = useRef<IFileExplorerRef>(null)
-  const [treeData, setTreeData] = useState(filesData);
+  const [treeData, setTreeData] = useState(filesData)
 
   const handleChange = (newData, oldData, type, targetNode) => {
     console.log('change type:', type)
@@ -22,7 +23,7 @@ export default () => {
   }
 
   return (
-    <div style={{border: '1px solid #ccc'}}>
+    <div style={{ border: '1px solid #ccc' }}>
       <button onClick={addFile}>add file</button>
       <button onClick={addFolder}>add folder</button>
       <FileExplorer
@@ -30,7 +31,7 @@ export default () => {
         data={treeData}
         enableDrag
         onChange={handleChange}
-        onSelect={(node) => console.log(node)}
+        onSelect={(node: INode) => console.log(node)}
         rootId={0}
         enableSelect
         showActions
@@ -39,3 +40,5 @@ export default () => {
     </div>
   )
 }
+
+export default App

@@ -1,6 +1,18 @@
-import { defineConfig } from 'father';
+import { defineConfig } from 'father'
 
 export default defineConfig({
-  // more father config: https://github.com/umijs/father/blob/master/docs/config.md
-  esm: { output: 'dist' },
-});
+  // plugins: ['./plugins/loader.ts'],
+  // esm: { output: 'dist', transformer: 'babel' }, // 必须要使用 babel 模式
+  // extraBabelPlugins: [
+  //   [
+  //     './plugins/babel-less-to-css.js', // 把 js/ts 文件中的 '.less' 字符转为 '.css'
+  //     {
+  //       test: '\\.less',
+  //     },
+  //   ],
+  // ],
+  umd: {
+    output: 'dist',
+    extractCSS: false,
+  },
+})

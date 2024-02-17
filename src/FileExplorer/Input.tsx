@@ -1,23 +1,22 @@
-import React, {useEffect, useRef, useState} from "react";
-//import Icon from "file-explorer/FileExplorer/icons";
+import React, { useEffect, useRef, useState } from 'react'
 
 interface IInput {
-  text: string;
-  onChange: (val: string, create?: boolean) => void;
-  onCancel: (remove?: boolean) => void;
+  text: string
+  onChange: (val: string, create?: boolean) => void
+  onCancel: (remove?: boolean) => void
 }
 
 export const Input: React.FC<IInput> = (props) => {
-  const {text, onChange, onCancel} = props;
+  const { text, onChange, onCancel } = props
   const inputRef = useRef<HTMLInputElement>(null)
-  const [labelText, setLabelText] = useState(text);
+  const [labelText, setLabelText] = useState(text)
 
   const handleChangeText = (e: any) => {
-    setLabelText(e.target.value);
-  };
+    setLabelText(e.target.value)
+  }
 
   const handleSubmit = () => {
-    if (labelText === '' && text==='') {
+    if (labelText === '' && text === '') {
       onCancel(true)
       return
     }
@@ -25,17 +24,17 @@ export const Input: React.FC<IInput> = (props) => {
       onCancel()
       return
     }
-    onChange(labelText, text === '');
-  };
+    onChange(labelText, text === '')
+  }
 
   const handleCancel = () => {
     if (text === '' || text === undefined) {
       onCancel(true)
       return
     }
-    setLabelText(text);
+    setLabelText(text)
     onCancel()
-  };
+  }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -61,13 +60,12 @@ export const Input: React.FC<IInput> = (props) => {
         onBlur={handleSubmit}
         onKeyDown={handleKeyDown}
       />
-      {/*<span onClick={handleSubmit}>
+      {/* <span onClick={handleSubmit}>
         <Icon name='check'/>
       </span>
       <span onClick={handleCancel}>
         <Icon name='close'/>
-      </span>*/}
+      </span> */}
     </div>
   )
-
 }

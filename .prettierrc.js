@@ -1,3 +1,5 @@
+const prettier = require('@rainetian/lint').prettier
+
 module.exports = {
   pluginSearchDirs: false,
   plugins: [
@@ -16,4 +18,5 @@ module.exports = {
       },
     },
   ],
+  ...prettier
 };
