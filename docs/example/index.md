@@ -13,16 +13,20 @@ title: 示例
 
 这是一个最基础的示例, `rootId` 为根节点id，默认是空字符串`''`, `data` 为树形结构的数据
 
-```tsx
-import FileExplorer from '@rainetian/file-explorer'
+<code src="./base.tsx"></code>
 
-import { filesData } from './filesData'
+## 可拖拽
 
-export default () => {
-  return (
-    <div style={{ width: 250, border: '1px solid #ccc' }}>
-      <FileExplorer data={filesData} rootId={0} />
-    </div>
-  )
-}
-```
+<code src="./drag.tsx"></code>
+
+## 默认展开
+
+<code src="./selected.tsx"></code>
+
+## 自定义渲染
+
+<code src="./customTitle.tsx"></code>
+
+## 完整示例
+
+<code src="./full.tsx"></code>
