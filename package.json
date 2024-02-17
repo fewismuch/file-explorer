@@ -1,9 +1,7 @@
 {
   "name": "@rainetian/file-explorer",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "a file explorer component",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "main": "dist/file-explorer.min.js",
   "scripts": {
     "start": "npm run dev",
