@@ -2,6 +2,14 @@ import { defineConfig } from 'father'
 
 export default defineConfig({
   plugins: ['./plugins/loader.ts'],
+  umd: {
+    output: 'dist/umd',
+    externals: {
+      'react': 'react',
+      'react-dom': 'react-dom',
+      '@minoru/react-dnd-treeview': '@minoru/react-dnd-treeview'
+    }
+  },
   esm: { output: 'dist', transformer: 'babel' }, // 必须要使用 babel 模式
   extraBabelPlugins: [
     [

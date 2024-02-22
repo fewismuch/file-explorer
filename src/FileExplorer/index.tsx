@@ -1,7 +1,8 @@
 // @ts-ignore
 // prettier-ignore
-import { DndProvider,getBackendOptions,getDescendants,MultiBackend,Tree } from '@minoru/react-dnd-treeview'
+import { DndProvider,getDescendants,Tree } from '@minoru/react-dnd-treeview'
 import React, { useEffect, useState } from 'react'
+import { HTML5Backend } from "react-dnd-html5-backend"
 
 import { CustomNode } from './CustomNode'
 import './index.less'
@@ -123,7 +124,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }, [data])
 
   return (
-    <DndProvider backend={MultiBackend} options={getBackendOptions()}>
+    <DndProvider backend={HTML5Backend}>
       <Tree
         tree={fileExplorerData}
         rootId={rootId}
