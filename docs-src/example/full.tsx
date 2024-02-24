@@ -28,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <div style={{ border: '1px solid #ccc' }}>
+    <div>
       <button onClick={addFile}>add file</button>
       <button onClick={addFolder}>add folder</button>
       <FileExplorer

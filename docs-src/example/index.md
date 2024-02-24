@@ -15,17 +15,20 @@ title: 示例
 
 <code src="./base.tsx"></code>
 
-## 可拖拽
-
-<code src="./drag.tsx"></code>
-
 ## 默认展开
 
 <code src="./selected.tsx"></code>
 
+
 ## 自定义渲染
 
 <code src="./customTitle.tsx"></code>
+
+
+## 可拖拽
+
+<code src="./drag.tsx"></code>
+
 
 ## 完整示例
 
