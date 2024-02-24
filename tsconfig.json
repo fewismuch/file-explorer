@@ -7,6 +7,7 @@
     "jsx": "react",
     "baseUrl": "./",
     "lib": ["es2015", "dom"],
+    "moduleResolution": "bundler",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "file-explorer": ["src"],

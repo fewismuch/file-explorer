@@ -11,7 +11,7 @@ export const Input: React.FC<IInput> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [labelText, setLabelText] = useState(text)
 
-  const handleChangeText = (e: any) => {
+  const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLabelText(e.target.value)
   }
 

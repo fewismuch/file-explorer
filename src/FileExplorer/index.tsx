@@ -1,6 +1,5 @@
-import { DndProvider, getDescendants, Tree } from '@minoru/react-dnd-treeview'
+import { DndProvider, HTML5Backend, Tree, getDescendants } from '@rainetian/react-dnd-treeview/pure'
 import React, { useEffect, useState } from 'react'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import { CustomNode } from './CustomNode'
 import './index.less'
@@ -47,7 +46,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       newTree,
       [...data],
       'remove',
-      data.find((node: any) => node.id === id)
+      data.find((node) => node.id === id)
     )
   }
 

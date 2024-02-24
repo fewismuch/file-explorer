@@ -1,4 +1,4 @@
-import { useDragOver } from '@minoru/react-dnd-treeview'
+import { useDragOver } from '@rainetian/react-dnd-treeview'
 import React, { useEffect, useState } from 'react'
 
 import { Icon } from './Icons'
@@ -44,7 +44,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
 
   const showInput = visibleInput || text === ''
 
-  const handleToggle = (e: any) => {
+  const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation()
     props.onToggle(id)
   }
@@ -53,7 +53,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
 
   const dragOverAutoExpandProps = dragOverAutoExpand ? dragOverProps : {}
 
-  const handleShowInput = (e: any) => {
+  const handleShowInput = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     setVisibleInput(true)
   }
@@ -74,7 +74,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     setVisibleInput(false)
   }
 
-  const handleAddNode = (e: any) => {
+  const handleAddNode = (e: React.MouseEvent) => {
     e.stopPropagation()
     props.onCreate(
       {
@@ -87,7 +87,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     )
   }
 
-  const handleAddFolder = (e: any) => {
+  const handleAddFolder = (e: React.MouseEvent) => {
     e.stopPropagation()
     props.onCreate(
       {
@@ -100,12 +100,12 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     )
   }
 
-  const handleSelectNode = (e: any) => {
+  const handleSelectNode = (e: React.MouseEvent) => {
     if (clickRowAutoExpand) handleToggle(e)
     props.onSelect?.(props.node)
   }
 
-  const handleRemoveNode = (e: any) => {
+  const handleRemoveNode = (e: React.MouseEvent) => {
     e.stopPropagation()
     props.onRemove(id)
   }
