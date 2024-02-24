@@ -20,15 +20,15 @@ const App = () => {
   }
 
   const addFile = () => {
-    fileExplorerRef.current?.addFile()
+    fileExplorerRef.addFile()
   }
 
   const addFolder = () => {
-    fileExplorerRef.current?.addFolder()
+    fileExplorerRef.addFolder()
   }
 
   return (
-    <div style={{ border: '1px solid #ccc' }}>
+    <div>
       <button onClick={addFile}>add file</button>
       <button onClick={addFolder}>add folder</button>
       <FileExplorer
