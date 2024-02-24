@@ -34,11 +34,11 @@
       "stylelint --fix",
       "prettier --write"
     ],
-    "src/**/*.{js,jsx}": [
+    "{src,docs-src}/**/*.{js,jsx}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "src/**/*.{ts,tsx}": [
+    "{src,docs-src}/**/*.{ts,tsx}": [
       "eslint --fix",
       "prettier --parser=typescript --write"
     ]
