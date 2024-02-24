@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface IFileExplorerRef {
   addFile: () => void
   addFolder: () => void
