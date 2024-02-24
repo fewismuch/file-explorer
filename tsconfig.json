@@ -13,5 +13,5 @@
       "file-explorer/*": ["src/*", "docs/*", "*"]
     }
   },
-  "include": [".dumirc.ts", "src/**/*", "docs/**/*"]
+  "include": [".dumirc.ts", "src/**/*", "docs-src/**/*"]
 }

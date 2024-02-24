@@ -1,7 +1,10 @@
 import { defineConfig } from 'dumi'
 
 export default defineConfig({
-  outputPath: 'docs-dist',
+  resolve: {
+    docDirs: ['docs-src'],
+  },
+  outputPath: 'docs',
   themeConfig: {
     name: 'file-explorer',
   },
