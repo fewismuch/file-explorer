@@ -8,20 +8,10 @@
     "baseUrl": "./",
     "lib": ["es2015", "dom"],
     "paths": {
-      "@@/*": [
-        ".dumi/tmp/*"
-      ],
-      "file-explorer": [
-        "src"
-      ],
-      "file-explorer/*": [
-        "src/*",
-        "*"
-      ]
+      "@@/*": [".dumi/tmp/*"],
+      "file-explorer": ["src"],
+      "file-explorer/*": ["src/*", "docs/*", "*"]
     }
   },
-  "include": [
-    ".dumirc.ts",
-    "src/**/*"
-  ]
+  "include": [".dumirc.ts", "src/**/*", "docs/**/*"]
 }

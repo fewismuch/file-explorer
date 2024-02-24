@@ -159,7 +159,7 @@ interface IIcon {
   [key: string]: any
 }
 
-const Icon: React.FC<IIcon> = (props) => {
+export const Icon: React.FC<IIcon> = (props) => {
   const { style, name, ...rest } = props
   return (
     <span {...rest} style={{ display: 'flex', alignItems: 'center', ...style }}>
@@ -167,5 +167,3 @@ const Icon: React.FC<IIcon> = (props) => {
     </span>
   )
 }
-
-export default Icon

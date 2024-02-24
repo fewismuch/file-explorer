@@ -1,7 +1,7 @@
 import { useDragOver } from '@minoru/react-dnd-treeview'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import Icon from './icons'
+import { Icon } from './Icons'
 import { Input } from './Input'
 import { DRAFT_ID } from './utils'
 
@@ -21,6 +21,7 @@ interface ICustomNode {
   isOpen?: boolean
   showIcon?: boolean
   showActions?: boolean
+  showInput?: boolean
   titleRender?: (node: INode) => React.ReactNode
   switcherIcon?: React.ReactNode
 }
@@ -141,6 +142,10 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
       </div>
     )
   }
+
+  useEffect(() => {
+    setVisibleInput(props.showInput || false)
+  }, [props.showInput])
 
   return (
     <div

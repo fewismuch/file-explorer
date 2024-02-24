@@ -3,6 +3,8 @@ import React from 'react'
 export interface IFileExplorerRef {
   addFile: () => void
   addFolder: () => void
+  remove: (id: string | number) => void
+  edit: (id: string | number) => void
 }
 
 export interface INode {
@@ -18,6 +20,8 @@ export interface INode {
   [propName: string]: any
 }
 
+export type ChangeAction = 'create' | 'update' | 'remove' | 'drop'
+
 export interface IFileExplorer {
   fileExplorerRef?: IFileExplorerRef
   /**
@@ -27,12 +31,7 @@ export interface IFileExplorer {
   data: INode[]
   titleRender?: (node: INode) => React.ReactNode
   switcherIcon?: React.ReactNode
-  onChange?: (
-    newTree: INode[],
-    oldTree: INode[],
-    action: 'create' | 'update' | 'remove' | 'drop',
-    targetNode?: INode
-  ) => void
+  onChange?: (newTree: INode[], oldTree: INode[], action: ChangeAction, targetNode?: INode) => void
   onSelect?: (node: INode) => void
   canDrag?: (node?: INode) => boolean
   /**

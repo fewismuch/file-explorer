@@ -1,8 +1,6 @@
-// @ts-ignore
-// prettier-ignore
-import { DndProvider,getDescendants,Tree } from '@minoru/react-dnd-treeview'
+import { DndProvider, getDescendants, Tree } from '@minoru/react-dnd-treeview'
 import React, { useEffect, useState } from 'react'
-import { HTML5Backend } from "react-dnd-html5-backend"
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import { CustomNode } from './CustomNode'
 import './index.less'
@@ -31,6 +29,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   } = props
   const [fileExplorerData, setFileExplorerData] = useState(data)
   const [selectedNode, setSelectedNode] = useState<INode | undefined>()
+  const [editingNodeId, setEditingNodeId] = useState<string | number | null>(null)
 
   const handleDrop = (newTree: INode[]) => {
     const targetNode = findChangedNode(data, newTree)
@@ -116,6 +115,12 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
           },
           true
         )
+
+      fileExplorerRef.remove = (id: string | number) => handleRemove(id, true)
+
+      fileExplorerRef.edit = (id: string | number) => {
+        setEditingNodeId(id)
+      }
     }
   }, [])
 
@@ -146,6 +151,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
             clickRowAutoExpand={clickRowAutoExpand}
             titleRender={titleRender}
             showActions={showActions}
+            showInput={node.id === editingNodeId}
           />
         )}
         onDrop={handleDrop}

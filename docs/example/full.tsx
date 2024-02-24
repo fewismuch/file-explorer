@@ -5,7 +5,7 @@ import { filesData } from './filesData'
 
 const App = () => {
   const fileExplorerRef = useRef<IFileExplorerRef>(null)
-  const [treeData, setTreeData] = useState(filesData)
+  const [treeData, setTreeData] = useState<INode[]>(filesData)
 
   const handleChange = (newData, oldData, type, targetNode) => {
     console.log('change type:', type)
