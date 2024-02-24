@@ -1,4 +1,4 @@
-import { useDragOver } from '@rainetian/react-dnd-treeview'
+import { useDragOver } from '@rainetian/react-dnd-treeview/pure'
 import React, { useEffect, useState } from 'react'
 
 import { Icon } from './Icons'
