@@ -10,7 +10,7 @@
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "file-explorer": ["src"],
-      "file-explorer/*": ["src/*", "docs/*", "*"]
+      "file-explorer/*": ["src/*", "docs-src/*", "*"]
     }
   },
   "include": [".dumirc.ts", "src/**/*", "docs-src/**/*"]
