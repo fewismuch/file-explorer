@@ -6,8 +6,9 @@
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": "./",
-    "lib": ["es2015", "dom"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "moduleResolution": "bundler",
+    "module": "ESNext",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "file-explorer": ["src"],
