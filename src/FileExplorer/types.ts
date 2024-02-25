@@ -20,7 +20,7 @@ export interface INode {
 
 export type ChangeAction = 'create' | 'update' | 'remove' | 'drop'
 
-export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDrop'> {
+export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render'> {
   fileExplorerRef?: React.ForwardedRef<IFileExplorerMethods>
   data: INode[]
   onChange?: (newTree: INode[], oldTree: INode[], action: ChangeAction, targetNode?: INode) => void

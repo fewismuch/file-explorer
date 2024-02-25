@@ -1,5 +1,6 @@
 import {
   DndProvider,
+  DropOptions,
   HTML5Backend,
   Tree,
   TreeMethods,
@@ -19,6 +20,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     fileExplorerRef,
     rootId,
     data,
+    onDrop,
     onChange,
     onSelect,
     dragOverAutoExpand = false,
@@ -34,7 +36,8 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   const [selectedNode, setSelectedNode] = useState<INode | undefined>()
   const [editingNodeId, setEditingNodeId] = useState<string | number | null>(null)
 
-  const handleDrop = (newTree: INode[]) => {
+  const handleDrop = (newTree: INode[], options: DropOptions) => {
+    onDrop?.(newTree, options)
     const targetNode = findChangedNode(data, newTree)
     onChange?.(newTree, [...data], 'drop', targetNode)
   }
