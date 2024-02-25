@@ -1,4 +1,4 @@
-import { TreeProps } from '@rainetian/react-dnd-treeview/pure'
+import { DropOptions, NodeModel, TreeProps } from '@rainetian/react-dnd-treeview/pure'
 import React from 'react'
 
 export interface IFileExplorerMethods {
@@ -20,7 +20,7 @@ export interface INode {
 
 export type ChangeAction = 'create' | 'update' | 'remove' | 'drop'
 
-export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render'> {
+export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDrop'> {
   fileExplorerRef?: React.ForwardedRef<IFileExplorerMethods>
   data: INode[]
   onChange?: (newTree: INode[], oldTree: INode[], action: ChangeAction, targetNode?: INode) => void
@@ -32,4 +32,5 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render'> {
   titleRender?: (node: INode) => React.ReactNode
   switcherIcon?: (isOpen: boolean) => React.ReactNode
   fileIcon?: (fileSuffix: string) => React.ReactNode
+  onDrop?: (tree: NodeModel[], options: DropOptions) => void
 }
