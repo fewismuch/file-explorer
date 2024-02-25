@@ -1,10 +1,10 @@
-import FileExplorer, { ChangeAction, IFileExplorerRef, INode } from '@rainetian/file-explorer'
+import FileExplorer, { ChangeAction, IFileExplorerMethods, INode } from '@rainetian/file-explorer'
 import React, { useRef, useState } from 'react'
 
 import { filesData } from './filesData'
 
 const App = () => {
-  const fileExplorerRef = useRef<IFileExplorerRef>(null)
+  const fileExplorerRef = useRef<IFileExplorerMethods>(null)
   const [treeData, setTreeData] = useState<INode[]>(filesData)
 
   const handleChange = (
@@ -19,22 +19,16 @@ const App = () => {
     setTreeData(newData)
   }
 
-  const addFile = () => {
-    fileExplorerRef.current?.addFile()
-  }
-
-  const addFolder = () => {
-    fileExplorerRef.current?.addFolder()
-  }
-
   return (
     <div>
-      <button onClick={addFile}>add file</button>
-      <button onClick={addFolder}>add folder</button>
+      <button onClick={() => fileExplorerRef.current.addFile()}>add file</button>
+      <button onClick={() => fileExplorerRef.current.addFolder()}>add folder</button>
+      <button onClick={() => fileExplorerRef.current.closeAll()}>closeAll</button>
+      <button onClick={() => fileExplorerRef.current.openAll()}>openAll</button>
+
       <FileExplorer
         fileExplorerRef={fileExplorerRef}
         data={treeData}
-        enableDrag
         onChange={handleChange}
         onSelect={(node: INode) => console.log(node)}
         rootId={0}

@@ -13,17 +13,17 @@ interface ICustomNode {
   isSelected?: boolean
   dragOverAutoExpand?: boolean
   clickRowAutoExpand?: boolean
+  isOpen?: boolean
+  showInput?: boolean
+  showActions?: boolean
   onToggle: (id: string | number) => void
   onTextChange: (id: string | number, value: string) => void
   onCreate: (node: INode, draft?: boolean) => void
   onRemove: (id: string | number, draft?: boolean) => void
   onSelect?: (node: INode) => void
-  isOpen?: boolean
-  showIcon?: boolean
-  showActions?: boolean
-  showInput?: boolean
   titleRender?: (node: INode) => React.ReactNode
-  switcherIcon?: React.ReactNode
+  switcherIcon?: (isOpen: boolean) => React.ReactNode | React.ReactNode
+  fileIcon?: (fileSuffix: string) => React.ReactNode
 }
 
 export const CustomNode: React.FC<ICustomNode> = (props) => {
@@ -31,11 +31,11 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     dragOverAutoExpand,
     clickRowAutoExpand,
     isSelected,
-    showIcon,
     isOpen = false,
     showActions = true,
     titleRender,
     switcherIcon,
+    fileIcon,
   } = props
   const { id, droppable, text } = props.node
   const [visibleInput, setVisibleInput] = useState(false)
@@ -111,10 +111,19 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
   }
 
   const NodeIcon = ({ name }: { name?: string }) => {
-    if (showIcon) {
+    if (!fileIcon) {
       return (
         <div className='file-explorer__node-icon' data-name={name}>
           {droppable ? <Icon name={isOpen ? 'folderOpen' : 'folder'} /> : <Icon name='file' />}
+        </div>
+      )
+    } else {
+      const FolderOpenIcon = fileIcon('folderOpen') || <Icon name='folderOpen' />
+      const FolderIcon = fileIcon('folder') || <Icon name='folder' />
+      const OtherIcon = fileIcon(name?.split('.').pop() || 'file') || <Icon name='file' />
+      return (
+        <div className='file-explorer__node-icon' data-name={name}>
+          {droppable ? (isOpen ? FolderOpenIcon : FolderIcon) : OtherIcon}
         </div>
       )
     }
@@ -143,6 +152,26 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     )
   }
 
+  const SwitcherIcon = () => {
+    const iconFunc = switcherIcon && typeof switcherIcon === 'function'
+
+    return (
+      <div
+        className={`file-explorer__node-expand-icon-wrapper ${!droppable ? 'disabled' : ''}`}
+        onClick={handleToggle}
+      >
+        {droppable &&
+          (!iconFunc ? (
+            <div className={`file-explorer__node-expand-icon ${isOpen ? 'isOpen' : ''}`}>
+              {switcherIcon || <Icon name='right' />}
+            </div>
+          ) : (
+            switcherIcon(isOpen)
+          ))}
+      </div>
+    )
+  }
+
   useEffect(() => {
     setVisibleInput(props.showInput || false)
   }, [props.showInput])
@@ -158,16 +187,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
       onMouseLeave={() => setHover(false)}
       onClick={handleSelectNode}
     >
-      <div
-        className={`file-explorer__node-expand-icon-wrapper ${!droppable ? 'disabled' : ''}`}
-        onClick={handleToggle}
-      >
-        {droppable && (
-          <div className={`file-explorer__node-expand-icon ${isOpen ? 'isOpen' : ''}`}>
-            {switcherIcon || <Icon name='right' />}
-          </div>
-        )}
-      </div>
+      <SwitcherIcon />
       <NodeIcon name={text} />
 
       <div className='file-explorer__node-content'>

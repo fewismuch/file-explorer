@@ -10,7 +10,7 @@ import { filesData } from './filesData'
 const App = () => {
   return (
     <div style={{ width: 250, border: '1px solid #ccc' }}>
-      <FileExplorer data={filesData} rootId={0} />
+      <FileExplorer data={filesData} rootId={0} initialOpen={[4]} />
     </div>
   )
 }

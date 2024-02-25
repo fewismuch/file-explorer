@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <div>
-      <FileExplorer data={treeData} rootId={0} onChange={handleChange} enableDrag />
+      <FileExplorer data={treeData} rootId={0} onChange={handleChange} />
     </div>
   )
 }

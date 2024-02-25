@@ -9,7 +9,7 @@ export const filesData = [
     id: 2,
     parent: 1,
     droppable: false,
-    text: 'File 1-1',
+    text: 'File1-1.vue',
   },
   {
     id: 3,
