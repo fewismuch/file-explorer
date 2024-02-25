@@ -11,6 +11,7 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 import { CustomNode } from './CustomNode'
 import './index.less'
 import { DRAFT_ID, findChangedNode } from './utils'
+import './variables.less'
 
 import type { IFileExplorer, INode } from './types'
 
@@ -30,6 +31,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     titleRender,
     switcherIcon,
     fileIcon,
+    theme,
     ...rest
   } = props
   const [fileExplorerData, setFileExplorerData] = useState(data)
@@ -131,39 +133,41 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }, [data])
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Tree
-        ref={treeRef}
-        tree={fileExplorerData}
-        rootId={rootId}
-        render={(node, { depth, isOpen, onToggle }) => (
-          <CustomNode
-            node={node}
-            depth={depth}
-            isOpen={isOpen}
-            switcherIcon={switcherIcon}
-            isSelected={node.id === selectedNode?.id}
-            onToggle={onToggle}
-            onSelect={handleSelect}
-            onRemove={handleRemove}
-            onTextChange={handleTextChange}
-            onCreate={handleCreate}
-            dragOverAutoExpand={dragOverAutoExpand}
-            clickRowAutoExpand={clickRowAutoExpand}
-            titleRender={titleRender}
-            showActions={showActions}
-            showInput={node.id === editingNodeId}
-            fileIcon={fileIcon}
-          />
-        )}
-        onDrop={handleDrop}
-        classes={{
-          root: 'file-explorer',
-          draggingSource: 'file-explorer__draggingSource',
-          dropTarget: 'file-explorer__dropTarget',
-        }}
-        {...rest}
-      />
-    </DndProvider>
+    <div data-id='file-explorer' data-theme={theme}>
+      <DndProvider backend={HTML5Backend}>
+        <Tree
+          ref={treeRef}
+          tree={fileExplorerData}
+          rootId={rootId}
+          render={(node, { depth, isOpen, onToggle }) => (
+            <CustomNode
+              node={node}
+              depth={depth}
+              isOpen={isOpen}
+              switcherIcon={switcherIcon}
+              isSelected={node.id === selectedNode?.id}
+              onToggle={onToggle}
+              onSelect={handleSelect}
+              onRemove={handleRemove}
+              onTextChange={handleTextChange}
+              onCreate={handleCreate}
+              dragOverAutoExpand={dragOverAutoExpand}
+              clickRowAutoExpand={clickRowAutoExpand}
+              titleRender={titleRender}
+              showActions={showActions}
+              showInput={node.id === editingNodeId}
+              fileIcon={fileIcon}
+            />
+          )}
+          onDrop={handleDrop}
+          classes={{
+            root: 'file-explorer',
+            draggingSource: 'file-explorer__draggingSource',
+            dropTarget: 'file-explorer__dropTarget',
+          }}
+          {...rest}
+        />
+      </DndProvider>
+    </div>
   )
 }

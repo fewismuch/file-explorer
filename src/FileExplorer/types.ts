@@ -29,6 +29,7 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   clickRowAutoExpand?: boolean
   enableSelect?: boolean
   showActions?: boolean
+  theme?: 'dark' | 'light'
   titleRender?: (node: INode) => React.ReactNode
   switcherIcon?: (isOpen: boolean) => React.ReactNode
   fileIcon?: (fileSuffix: string) => React.ReactNode
