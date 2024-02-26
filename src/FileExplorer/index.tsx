@@ -9,11 +9,10 @@ import {
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 import { CustomNode } from './CustomNode'
-import './index.less'
+import { IFileExplorer, INode } from './types'
 import { DRAFT_ID, findChangedNode } from './utils'
-import './variables.less'
 
-import type { IFileExplorer, INode } from './types'
+import './index.less'
 
 export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   const treeRef = useRef<TreeMethods>(null)
