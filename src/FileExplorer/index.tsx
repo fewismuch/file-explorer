@@ -124,7 +124,10 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     edit: (id: string | number) => {
       setEditingNodeId(id)
     },
-    ...treeRef.current,
+    openAll: treeRef.current?.openAll,
+    closeAll: treeRef.current?.closeAll,
+    open: treeRef.current?.open,
+    close: treeRef.current?.close,
   }))
 
   useEffect(() => {

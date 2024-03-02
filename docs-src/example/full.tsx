@@ -1,11 +1,11 @@
 import FileExplorer, { ChangeAction, IFileExplorerMethods, INode } from '@rainetian/file-explorer'
 import React, { useRef, useState } from 'react'
 
-import { filesData } from './filesData'
+import { treeData } from './treeData'
 
 const App = () => {
   const fileExplorerRef = useRef<IFileExplorerMethods>(null)
-  const [treeData, setTreeData] = useState<INode[]>(filesData)
+  const [data, setData] = useState<INode[]>(treeData)
 
   const handleChange = (
     newData: INode[],
@@ -16,19 +16,19 @@ const App = () => {
     console.log('change type:', type)
     console.log('targetNode:', targetNode)
     console.log('oldData:', oldData)
-    setTreeData(newData)
+    setData(newData)
   }
 
   return (
     <div>
-      <button onClick={() => fileExplorerRef.current.addFile()}>add file</button>
-      <button onClick={() => fileExplorerRef.current.addFolder()}>add folder</button>
-      <button onClick={() => fileExplorerRef.current.closeAll()}>closeAll</button>
-      <button onClick={() => fileExplorerRef.current.openAll()}>openAll</button>
+      <button onClick={() => fileExplorerRef.current?.addFile()}>add file</button>
+      <button onClick={() => fileExplorerRef.current?.addFolder()}>add folder</button>
+      <button onClick={() => fileExplorerRef.current?.closeAll()}>closeAll</button>
+      <button onClick={() => fileExplorerRef.current?.openAll()}>openAll</button>
 
       <FileExplorer
         fileExplorerRef={fileExplorerRef}
-        data={treeData}
+        data={data}
         onChange={handleChange}
         onSelect={(node: INode) => console.log(node)}
         rootId={0}

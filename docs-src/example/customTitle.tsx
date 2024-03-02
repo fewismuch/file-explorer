@@ -1,7 +1,7 @@
 import FileExplorer, { INode } from '@rainetian/file-explorer'
 import React from 'react'
 
-import { filesData } from './filesData'
+import { treeData } from './treeData'
 
 const App = () => {
   const Title = ({ node }: { node: INode }) => {
@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <FileExplorer
-      data={filesData}
+      data={treeData}
       rootId={0}
       titleRender={(node: INode) => <Title node={node} />}
       switcherIcon={<span>▶️</span>}

@@ -1,11 +1,27 @@
-import { DropOptions, NodeModel, TreeProps } from '@rainetian/react-dnd-treeview/pure'
+import {
+  CloseHandler,
+  DropOptions,
+  NodeModel,
+  OpenHandler,
+  TreeProps,
+} from '@rainetian/react-dnd-treeview/pure'
 import React from 'react'
 
 export interface IFileExplorerMethods {
-  addFile: () => void
-  addFolder: () => void
-  remove: (id: string | number) => void
-  edit: (id: string | number) => void
+  addFile(): void
+
+  addFolder(): void
+
+  remove(id: string | number): void
+
+  edit(id: string | number): void
+
+  open?: OpenHandler
+  close?: CloseHandler
+
+  openAll?: () => void
+
+  closeAll?: () => void
 }
 
 export interface INode {

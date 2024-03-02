@@ -5,12 +5,12 @@
 import FileExplorer from '@rainetian/file-explorer'
 import React from 'react'
 
-import { filesData } from './filesData'
+import { treeData } from './treeData'
 
 const App = () => {
   return (
     <div style={{ width: 250, border: '1px solid #ccc', padding: 10 }}>
-      <FileExplorer data={filesData} rootId={0} />
+      <FileExplorer data={treeData} rootId={0} />
     </div>
   )
 }

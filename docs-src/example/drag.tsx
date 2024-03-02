@@ -1,18 +1,18 @@
 import FileExplorer, { INode } from '@rainetian/file-explorer'
 import React, { useState } from 'react'
 
-import { filesData } from './filesData'
+import { treeData } from './treeData'
 
 const App = () => {
-  const [treeData, setTreeData] = useState<INode[]>(filesData)
+  const [data, setData] = useState<INode[]>(treeData)
 
   const handleChange = (newData: INode[]) => {
-    setTreeData(newData)
+    setData(newData)
   }
 
   return (
     <div>
-      <FileExplorer data={treeData} rootId={0} onChange={handleChange} />
+      <FileExplorer data={data} rootId={0} onChange={handleChange} />
     </div>
   )
 }
