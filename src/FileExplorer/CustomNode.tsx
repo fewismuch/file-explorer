@@ -111,7 +111,6 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
   }
 
   const NodeIcon = ({ name }: { name?: string }) => {
-    console.log()
     if (typeof fileIcon === 'boolean') return <div style={{ marginLeft: -4 }}></div>
     if (!fileIcon) {
       return (
@@ -189,8 +188,8 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
       onMouseLeave={() => setHover(false)}
       onClick={handleSelectNode}
     >
-      <SwitcherIcon />
-      <NodeIcon name={text} />
+      {SwitcherIcon()}
+      {NodeIcon({ name: text })}
 
       <div className='file-explorer__node-content'>
         {showInput ? (
@@ -201,7 +200,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
           </span>
         )}
 
-        {hover && !showInput && showActions && <NodeActions />}
+        {hover && !showInput && showActions && NodeActions()}
       </div>
     </div>
   )
