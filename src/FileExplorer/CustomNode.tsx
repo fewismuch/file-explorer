@@ -111,6 +111,8 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
   }
 
   const NodeIcon = ({ name }: { name?: string }) => {
+    console.log()
+    if (typeof fileIcon === 'boolean') return <div style={{ marginLeft: -4 }}></div>
     if (!fileIcon) {
       return (
         <div className='file-explorer__node-icon' data-name={name}>

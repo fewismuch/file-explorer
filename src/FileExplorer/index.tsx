@@ -1,7 +1,9 @@
 import {
+  CloseHandler,
   DndProvider,
   DropOptions,
   HTML5Backend,
+  OpenHandler,
   Tree,
   TreeMethods,
   getDescendants,
@@ -10,7 +12,7 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 import { CustomNode } from './CustomNode'
 import { IFileExplorer, INode } from './types'
-import { DRAFT_ID, findChangedNode } from './utils'
+import { DRAFT_ID, findChangedNode, tree2files } from './utils'
 
 import './index.less'
 
@@ -124,10 +126,11 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     edit: (id: string | number) => {
       setEditingNodeId(id)
     },
-    openAll: treeRef.current?.openAll,
-    closeAll: treeRef.current?.closeAll,
-    open: treeRef.current?.open,
-    close: treeRef.current?.close,
+    getFiles: () => tree2files(fileExplorerData),
+    openAll: () => treeRef.current?.openAll(),
+    closeAll: () => treeRef.current?.closeAll(),
+    open: treeRef.current?.open as OpenHandler,
+    close: treeRef.current?.close as CloseHandler,
   }))
 
   useEffect(() => {

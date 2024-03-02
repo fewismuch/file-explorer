@@ -29,5 +29,5 @@ window.onload = function () {
       const theme = v.target?.value
       setCompTheme(theme)
     })
-  }, 0)
+  }, 100)
 }

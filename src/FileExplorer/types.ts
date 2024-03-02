@@ -8,6 +8,7 @@ import {
 import React from 'react'
 
 export interface IFileExplorerMethods {
+  getFiles(): void
   addFile(): void
 
   addFolder(): void
@@ -16,12 +17,12 @@ export interface IFileExplorerMethods {
 
   edit(id: string | number): void
 
-  open?: OpenHandler
-  close?: CloseHandler
+  open: OpenHandler
+  close: CloseHandler
 
-  openAll?: () => void
+  openAll(): void
 
-  closeAll?: () => void
+  closeAll(): void
 }
 
 export interface INode {
@@ -47,7 +48,11 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   showActions?: boolean
   theme?: 'dark' | 'light'
   titleRender?: (node: INode) => React.ReactNode
-  switcherIcon?: (isOpen: boolean) => React.ReactNode
-  fileIcon?: (fileSuffix: string) => React.ReactNode
+  switcherIcon?: (isOpen?: boolean) => React.ReactNode | React.ReactNode
+  fileIcon?: (fileSuffix: string) => React.ReactNode | boolean
   onDrop?: (tree: NodeModel[], options: DropOptions) => void
+}
+
+export interface FileMap {
+  [filePath: string]: string
 }
