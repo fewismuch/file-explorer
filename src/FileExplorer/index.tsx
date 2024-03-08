@@ -33,6 +33,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     switcherIcon,
     fileIcon,
     theme,
+    selectedId,
     ...rest
   } = props
   const [fileExplorerData, setFileExplorerData] = useState(data)
@@ -136,6 +137,13 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   useEffect(() => {
     setFileExplorerData(data)
   }, [data])
+
+  useEffect(() => {
+    if (data && selectedId !== undefined) {
+      const node = data.find((node) => node.id === selectedId)
+      if (node) handleSelect(node)
+    }
+  }, [])
 
   return (
     <div data-id='file-explorer' data-theme={theme}>

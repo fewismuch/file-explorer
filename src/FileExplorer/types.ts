@@ -48,9 +48,10 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   showActions?: boolean
   theme?: 'dark' | 'light'
   titleRender?: (node: INode) => React.ReactNode
-  switcherIcon?: (isOpen?: boolean) => React.ReactNode | React.ReactNode
-  fileIcon?: (fileSuffix: string) => React.ReactNode | boolean
+  switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
+  fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
   onDrop?: (tree: NodeModel[], options: DropOptions) => void
+  selectedId?: string | number
 }
 
 export interface FileMap {

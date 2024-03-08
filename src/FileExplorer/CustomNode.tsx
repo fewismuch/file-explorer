@@ -22,8 +22,8 @@ interface ICustomNode {
   onRemove: (id: string | number, draft?: boolean) => void
   onSelect?: (node: INode) => void
   titleRender?: (node: INode) => React.ReactNode
-  switcherIcon?: (isOpen: boolean) => React.ReactNode | React.ReactNode
-  fileIcon?: (fileSuffix: string) => React.ReactNode
+  switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
+  fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
 }
 
 export const CustomNode: React.FC<ICustomNode> = (props) => {

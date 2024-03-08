@@ -36,7 +36,7 @@ export function files2tree(files: FileMap): INode[] {
 
   // 构建文件夹路径映射
   for (const filePath in files) {
-    const parts = filePath.split('/')
+    const parts = filePath.startsWith('/') ? filePath.slice(1).split('/') : filePath.split('/')
     let parent = 0
     for (let i = 0; i < parts.length - 1; i++) {
       const folderPath = parts.slice(0, i + 1).join('/')
@@ -96,6 +96,30 @@ export function tree2files(tree: INode[]): FileMap {
   })
 
   return files
+}
+
+export function findNodeIdByPath(tree: INode[], path: string): number | string | null {
+  let currentId: number | string = 0
+  const parts = path.split('/').filter((part) => part) // 分割路径并过滤掉空字符串
+
+  for (const part of parts) {
+    // 查找当前路径下是否有子节点
+    let found = false
+    for (const node of tree) {
+      if (node.parent === currentId && node.text === part) {
+        currentId = node.id
+        found = true
+        break
+      }
+    }
+    if (!found) {
+      // 如果当前部分的路径没有找到对应的节点，返回null
+      return null
+    }
+  }
+
+  // 如果遍历完所有路径部分，返回最后一个匹配的节点ID
+  return currentId
 }
 
 export const DRAFT_ID = '_draft_id_'
