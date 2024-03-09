@@ -12,7 +12,7 @@ import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 import { CustomNode } from './CustomNode'
 import { IFileExplorer, INode } from './types'
-import { DRAFT_ID, findChangedNode, tree2files } from './utils'
+import { DRAFT_ID, findChangedNode, generateUUID, tree2files } from './utils'
 
 import './index.less'
 
@@ -66,15 +66,20 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }
 
   const handleCreate = (node: INode, draft?: boolean) => {
-    const newTree = [...data, node]
+    let newTree = [...data, node]
     if (draft) {
       setFileExplorerData(newTree)
       return
     }
+    const newNode = {
+      ...node,
+      id: generateUUID(),
+    }
+    newTree = [...data, newNode]
     onChange?.(newTree, {
       action: 'create',
       oldTree: [...data],
-      newNode: node,
+      newNode,
     })
   }
 

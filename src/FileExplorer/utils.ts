@@ -1,5 +1,15 @@
 import type { FileMap, INode } from './types'
 
+export function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    .replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0
+      const v = c === 'x' ? r : (r & 0x3) | 0x8
+      return v.toString(16)
+    })
+    .replace(/-/g, '')
+}
+
 export const findChangedNode = (currentArray: INode[], newArray: INode[]) => {
   let node
   currentArray.forEach((item) => {
@@ -79,61 +89,6 @@ export function tree2files(tree: INode[]): FileMap {
   })
 
   return files
-}
-
-export function findNodeIdByPath(tree: INode[], path: string): number | string | null {
-  let currentId: number | string = 0
-  const parts = path.split('/').filter((part) => part) // 分割路径并过滤掉空字符串
-
-  for (const part of parts) {
-    // 查找当前路径下是否有子节点
-    let found = false
-    for (const node of tree) {
-      if (node.parent === currentId && node.text === part) {
-        currentId = node.id
-        found = true
-        break
-      }
-    }
-    if (!found) {
-      // 如果当前部分的路径没有找到对应的节点，返回null
-      return null
-    }
-  }
-
-  // 如果遍历完所有路径部分，返回最后一个匹配的节点ID
-  return currentId
-}
-
-export function findPathByNodeId(tree: INode[], id: string | number): string | null {
-  // 辅助函数，用于递归查找路径
-  function traverse(data: INode[], parentId: string | number) {
-    for (const item of data) {
-      if (item.id.toString() === parentId.toString()) {
-        return item.text
-      }
-    }
-    return null
-  }
-
-  let path = ''
-  // TODO 根节点ID处理
-  // 遍历数据，查找目标ID的路径
-  while (id.toString() !== '0') {
-    const parentText = traverse(tree, id)
-    if (parentText === null) {
-      return null // 如果未找到对应的父节点，则返回null
-    }
-    path = '/' + parentText + path
-    for (const item of tree) {
-      if (item.text === parentText) {
-        id = item.parent
-        break
-      }
-    }
-  }
-
-  return path
 }
 
 export const DRAFT_ID = '_draft_id_'
