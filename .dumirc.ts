@@ -1,6 +1,11 @@
 import { defineConfig } from 'dumi'
 
+const env = process.env.NODE_ENV === 'production' ? 'production' : 'development'
+const isDev = env === 'development'
+
 export default defineConfig({
+  base: isDev ? '/' : '/file-explorer/',
+  publicPath: '/file-explorer/',
   resolve: {
     docDirs: ['docs-src'],
   },
