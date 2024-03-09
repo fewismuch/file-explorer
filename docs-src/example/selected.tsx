@@ -8,6 +8,7 @@ const App = () => {
   return (
     <div>
       <div>Selected: {node?.text}</div>
+      <br />
       <FileExplorer
         data={treeData}
         rootId={0}
@@ -16,6 +17,7 @@ const App = () => {
           console.log(node)
           setNode(node)
         }}
+        selectedId={2}
       />
     </div>
   )

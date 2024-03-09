@@ -29,6 +29,9 @@ title: 示例
 
 <code src="./drag.tsx"></code>
 
+## 不可拖拽
+
+<code src="./disabledDrag.tsx"></code>
 
 ## 完整示例
 

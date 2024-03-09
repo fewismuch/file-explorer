@@ -1,16 +1,18 @@
-/**
- * title: 我是标题
- * description: 我是简介，我可以用 `Markdown` 来编写
- */
-import FileExplorer, { fileExplorerUtils } from '@rainetian/file-explorer'
-import React from 'react'
+import FileExplorer, { INode } from '@rainetian/file-explorer'
+import React, { useState } from 'react'
 
-import { filesData } from './filesData'
+import { treeData } from './treeData'
 
 const App = () => {
+  const [data, setData] = useState<INode[]>(treeData)
+
+  const handleChange = (newData: INode[]) => {
+    setData(newData)
+  }
+
   return (
-    <div style={{ width: 250, border: '1px solid #ccc', padding: 10 }}>
-      <FileExplorer data={fileExplorerUtils.files2tree(filesData)} rootId={0} />
+    <div style={{ width: 250, border: '1px solid #ccc', padding: 12 }}>
+      <FileExplorer data={data} rootId={0} initialOpen onChange={handleChange} />
     </div>
   )
 }

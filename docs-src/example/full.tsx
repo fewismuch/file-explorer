@@ -1,4 +1,5 @@
-import FileExplorer, { ChangeAction, IFileExplorerMethods, INode } from '@rainetian/file-explorer'
+import FileExplorer, { IFileExplorerMethods, INode } from '@rainetian/file-explorer'
+import { IFileExplorerChangeParams } from 'file-explorer/dist'
 import React, { useRef, useState } from 'react'
 
 import { treeData } from './treeData'
@@ -8,15 +9,11 @@ const App = () => {
   const [data, setData] = useState<INode[]>(treeData)
 
   const handleChange = (
-    newData: INode[],
-    oldData: INode[],
-    type: ChangeAction,
-    targetNode?: INode
+    newTree: INode[],
+    { action, oldTree, oldNode, newNode }: IFileExplorerChangeParams
   ) => {
-    console.log('change type:', type)
-    console.log('targetNode:', targetNode)
-    console.log('oldData:', oldData)
-    setData(newData)
+    console.log(action, oldTree, oldNode, newNode)
+    setData(newTree)
   }
 
   return (

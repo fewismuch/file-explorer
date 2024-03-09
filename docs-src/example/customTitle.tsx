@@ -17,7 +17,7 @@ const App = () => {
       data={treeData}
       rootId={0}
       titleRender={(node: INode) => <Title node={node} />}
-      switcherIcon={() => <span>▶️</span>}
+      switcherIcon={<span>▶️</span>}
       fileIcon={false}
     />
   )
