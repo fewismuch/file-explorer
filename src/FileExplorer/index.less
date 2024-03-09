@@ -1,18 +1,24 @@
 div[data-id='file-explorer'],
 div[data-id='file-explorer'][data-theme='light'] {
-  --file-node-hover-bg: #e8e8e8;
-  --file-node-selected-bg: #e4e6f1;
-  --file-node-actions-text: #525252;
+  --file-node-hover-bg: rgb(0 0 0 / 4%);
+  --file-node-selected-bg: rgb(0 0 0 / 8%);
   --file-node-actions-text-hover: #000;
   --file-node-border: #1677ff;
+  --file-node-bg: #1677ff1a;
+  --file-node-text-base: #333;
+  --file-node-text-hover: #222;
+  --file-node-text-selected: #000;
 }
 
 div[data-id='file-explorer'][data-theme='dark'] {
-  --file-node-hover-bg: #2d3139;
-  --file-node-selected-bg: #292929;
-  --file-node-actions-text: #ccc;
+  --file-node-hover-bg: rgb(255 255 255 / 4%);
+  --file-node-selected-bg: rgb(255 255 255 / 8%);
   --file-node-actions-text-hover: #f0f0f0;
   --file-node-border: #1677ff;
+  --file-node-bg: #1677ff1a;
+  --file-node-text-base: #aaa;
+  --file-node-text-hover: #ebebeb;
+  --file-node-text-selected: #fff;
 }
 
 .file-explorer {
@@ -38,13 +44,15 @@ ul.file-explorer {
   height: 24px;
   font-size: 14px;
   align-items: center;
-  color: var(--file-node-actions-text);
+  color: var(--file-node-text-base);
 
   &--hover {
+    color: var(--file-node-text-hover);
     background-color: var(--file-node-hover-bg);
   }
 
   &--selected {
+    color: var(--file-node-text-selected);
     background-color: var(--file-node-selected-bg);
   }
 
@@ -113,7 +121,7 @@ ul.file-explorer {
 
     & > span {
       padding: 4px;
-      color: var(--file-node-actions-text);
+      color: var(--file-node-text-base);
       cursor: pointer;
 
       &:hover {
@@ -130,15 +138,38 @@ ul.file-explorer {
 }
 
 .file-explorer__dropTarget {
-  //background-color: #e6f4ff;
   &.file-explorer {
-    z-index: 1;
-    outline: 1px dashed var(--file-node-border);
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      pointer-events: none;
+      background-color: var(--file-node-bg);
+      border: 1px solid var(--file-node-border);
+      content: '';
+    }
   }
 
   & > .file-explorer__node {
-    z-index: 1;
-    outline: 1px dashed var(--file-node-border);
+    position: relative;
+    color: var(--file-node-border);
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      background-color: var(--file-node-bg);
+      border: 1px solid var(--file-node-border);
+      content: '';
+    }
   }
 }
 
