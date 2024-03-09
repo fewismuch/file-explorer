@@ -1,28 +1,10 @@
 import type { FileMap, INode } from './types'
 
-export const getLastId = (treeData: INode[]) => {
-  const reversedArray = [...treeData].sort((a, b) => {
-    if (a.id < b.id) {
-      return 1
-    } else if (a.id > b.id) {
-      return -1
-    }
-
-    return 0
-  })
-
-  if (reversedArray.length > 0) {
-    return reversedArray[0].id
-  }
-
-  return 0
-}
-
 export const findChangedNode = (currentArray: INode[], newArray: INode[]) => {
   let node
   currentArray.forEach((item) => {
     const nItem = newArray.find((n) => n.id === item.id)
-    if (item.pid !== nItem?.pid) {
+    if (item.parent !== nItem?.parent) {
       node = item
       return null
     }
@@ -77,6 +59,7 @@ export function tree2files(tree: INode[]): FileMap {
       let filePath = ''
       let parentId = item.parent
 
+      // TODO 根节点ID处理
       // 递归查找父级文件夹
       while (parentId !== 0) {
         const parentItem = tree.find((folder) => folder.id === parentId)!
@@ -120,6 +103,37 @@ export function findNodeIdByPath(tree: INode[], path: string): number | string |
 
   // 如果遍历完所有路径部分，返回最后一个匹配的节点ID
   return currentId
+}
+
+export function findPathByNodeId(tree: INode[], id: string | number): string | null {
+  // 辅助函数，用于递归查找路径
+  function traverse(data: INode[], parentId: string | number) {
+    for (const item of data) {
+      if (item.id.toString() === parentId.toString()) {
+        return item.text
+      }
+    }
+    return null
+  }
+
+  let path = ''
+  // TODO 根节点ID处理
+  // 遍历数据，查找目标ID的路径
+  while (id.toString() !== '0') {
+    const parentText = traverse(tree, id)
+    if (parentText === null) {
+      return null // 如果未找到对应的父节点，则返回null
+    }
+    path = '/' + parentText + path
+    for (const item of tree) {
+      if (item.text === parentText) {
+        id = item.parent
+        break
+      }
+    }
+  }
+
+  return path
 }
 
 export const DRAFT_ID = '_draft_id_'

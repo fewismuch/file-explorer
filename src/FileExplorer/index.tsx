@@ -42,8 +42,12 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
 
   const handleDrop = (newTree: INode[], options: DropOptions) => {
     onDrop?.(newTree, options)
-    const targetNode = findChangedNode(data, newTree)
-    onChange?.(newTree, [...data], 'drop', targetNode)
+    const oldNode = findChangedNode(data, newTree)!
+    onChange?.(newTree, {
+      action: 'drop',
+      oldTree: [...data],
+      oldNode,
+    })
   }
 
   const handleRemove = (id: string | number, draft?: boolean) => {
@@ -53,12 +57,12 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       setFileExplorerData(newTree)
       return
     }
-    onChange?.(
-      newTree,
-      [...data],
-      'remove',
-      data.find((node) => node.id === id)
-    )
+    const oldNode = data.find((node) => node.id === id)!
+    onChange?.(newTree, {
+      action: 'remove',
+      oldTree: [...data],
+      oldNode,
+    })
   }
 
   const handleCreate = (node: INode, draft?: boolean) => {
@@ -67,7 +71,11 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       setFileExplorerData(newTree)
       return
     }
-    onChange?.(newTree, [...data], 'create', node)
+    onChange?.(newTree, {
+      action: 'create',
+      oldTree: [...data],
+      oldNode: node,
+    })
   }
 
   const handleTextChange = (id: string | number, value: string) => {
@@ -80,10 +88,10 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       })
       return
     }
-    let targetNode
+    let oldNode
     const newTree = data.map((node) => {
       if (node.id === id) {
-        targetNode = node
+        oldNode = node
         return {
           ...node,
           text: value,
@@ -92,7 +100,11 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
 
       return node
     })
-    onChange?.(newTree, [...data], 'update', targetNode)
+    onChange?.(newTree, {
+      action: 'update',
+      oldTree: [...data],
+      oldNode: oldNode!,
+    })
   }
 
   const handleSelect = (node: INode) => {
@@ -141,9 +153,11 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   useEffect(() => {
     if (data && selectedId !== undefined) {
       const node = data.find((node) => node.id === selectedId)
-      if (node) handleSelect(node)
+      if (node && enableSelect) {
+        setSelectedNode(node)
+      }
     }
-  }, [])
+  }, [selectedId])
 
   return (
     <div data-id='file-explorer' data-theme={theme}>

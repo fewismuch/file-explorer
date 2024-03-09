@@ -35,12 +35,16 @@ export interface INode {
   [propName: string]: any
 }
 
-export type ChangeAction = 'create' | 'update' | 'remove' | 'drop'
+export interface IFileExplorerChangeParams {
+  action: 'create' | 'update' | 'remove' | 'drop'
+  oldTree: INode[]
+  oldNode: INode
+}
 
 export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDrop'> {
   fileExplorerRef?: React.ForwardedRef<IFileExplorerMethods>
   data: INode[]
-  onChange?: (newTree: INode[], oldTree: INode[], action: ChangeAction, targetNode?: INode) => void
+  onChange?: (newTree: INode[], changeParams: IFileExplorerChangeParams) => void
   onSelect?: (node: INode) => void
   dragOverAutoExpand?: boolean
   clickRowAutoExpand?: boolean
@@ -49,11 +53,11 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   theme?: 'dark' | 'light'
   titleRender?: (node: INode) => React.ReactNode
   switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
-  fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
+  fileIcon?: ((fileSuffix: 'file' | 'folder' | 'folderOpen' | string) => React.ReactNode) | boolean
   onDrop?: (tree: NodeModel[], options: DropOptions) => void
-  selectedId?: string | number
+  selectedId?: string | number | null
 }
 
 export interface FileMap {
-  [filePath: string]: string
+  [filePath: string]: string | Record<string, any>
 }
