@@ -17,7 +17,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div style={{ width: 250, border: '1px solid #ccc' }}>
       <button onClick={() => fileExplorerRef.current?.addFile()}>add file</button>
       <button onClick={() => fileExplorerRef.current?.addFolder()}>add folder</button>
       <button onClick={() => fileExplorerRef.current?.closeAll()}>closeAll</button>
