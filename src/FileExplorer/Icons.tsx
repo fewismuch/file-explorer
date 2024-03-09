@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddFile = () => (
+export const AddFileIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -17,7 +17,7 @@ const AddFile = () => (
   </svg>
 )
 
-const AddFolder = () => (
+export const AddFolderIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -34,7 +34,7 @@ const AddFolder = () => (
   </svg>
 )
 
-const Delete = () => (
+export const DeleteIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -51,7 +51,7 @@ const Delete = () => (
   </svg>
 )
 
-const Edit = () => (
+export const EditIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -68,7 +68,7 @@ const Edit = () => (
   </svg>
 )
 
-const FolderOpen = () => (
+export const FolderOpenIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -85,7 +85,7 @@ const FolderOpen = () => (
   </svg>
 )
 
-const Right = () => (
+export const RightIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -102,7 +102,7 @@ const Right = () => (
   </svg>
 )
 
-const File = () => (
+export const FileIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -119,7 +119,7 @@ const File = () => (
   </svg>
 )
 
-const Folder = () => (
+const FolderIcon = () => (
   <svg
     viewBox='64 64 896 896'
     focusable='false'
@@ -137,16 +137,16 @@ const Folder = () => (
 )
 
 const IconMap = {
-  file: <File />,
-  folder: <Folder />,
-  addFile: <AddFile />,
-  addFolder: <AddFolder />,
-  delete: <Delete />,
-  edit: <Edit />,
-  folderOpen: <FolderOpen />,
-  right: <Right />,
-  // close: <Close />,
-  // check: <Check />,
+  file: <FileIcon />,
+  folder: <FolderIcon />,
+  addFile: <AddFileIcon />,
+  addFolder: <AddFolderIcon />,
+  delete: <DeleteIcon />,
+  edit: <EditIcon />,
+  folderOpen: <FolderOpenIcon />,
+  right: <RightIcon />,
+  // close: <CloseIcon />,
+  // check: <CheckIcon />,
 }
 
 interface IIcon {
