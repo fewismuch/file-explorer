@@ -74,7 +74,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     onChange?.(newTree, {
       action: 'create',
       oldTree: [...data],
-      oldNode: node,
+      newNode: node,
     })
   }
 
@@ -198,3 +198,5 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     </div>
   )
 }
+
+export const Btn: React.FC = () => <span>1a2b</span>

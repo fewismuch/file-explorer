@@ -38,7 +38,8 @@ export interface INode {
 export interface IFileExplorerChangeParams {
   action: 'create' | 'update' | 'remove' | 'drop'
   oldTree: INode[]
-  oldNode: INode
+  oldNode?: INode
+  newNode?: INode
 }
 
 export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDrop'> {
