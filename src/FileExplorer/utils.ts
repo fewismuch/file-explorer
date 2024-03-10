@@ -11,7 +11,7 @@ export function generateUUID() {
 }
 
 export const findChangedNode = (currentArray: INode[], newArray: INode[]) => {
-  let node
+  let node: INode | undefined
   currentArray.forEach((item) => {
     const nItem = newArray.find((n) => n.id === item.id)
     if (item.parent !== nItem?.parent) {
@@ -60,7 +60,7 @@ export function files2tree(files: FileMap): INode[] {
   return tree
 }
 
-export function tree2files(tree: INode[]): FileMap {
+export function tree2files(tree: INode[], rootId = 0): FileMap {
   const files: FileMap = {}
 
   // 构建文件路径和对应的值映射
@@ -69,9 +69,8 @@ export function tree2files(tree: INode[]): FileMap {
       let filePath = ''
       let parentId = item.parent
 
-      // TODO 根节点ID处理
       // 递归查找父级文件夹
-      while (parentId !== 0) {
+      while (parentId !== rootId) {
         const parentItem = tree.find((folder) => folder.id === parentId)!
         filePath = parentItem.text + '/' + filePath
         parentId = parentItem.parent

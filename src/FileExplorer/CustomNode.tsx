@@ -1,7 +1,7 @@
 import { useDragOver } from '@rainetian/react-dnd-treeview/pure'
 import React, { useEffect, useState } from 'react'
 
-import { Icon } from './Icons'
+import { Icons } from './Icons'
 import { Input } from './Input'
 import { DRAFT_ID } from './utils'
 
@@ -115,13 +115,13 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     if (!fileIcon) {
       return (
         <div className='file-explorer__node-icon' data-name={name}>
-          {droppable ? <Icon name={isOpen ? 'folderOpen' : 'folder'} /> : <Icon name='file' />}
+          {droppable ? <Icons name={isOpen ? 'folderOpen' : 'folder'} /> : <Icons name='file' />}
         </div>
       )
     } else {
-      const FolderOpenIcon = fileIcon('folderOpen') || <Icon name='folderOpen' />
-      const FolderIcon = fileIcon('folder') || <Icon name='folder' />
-      const OtherIcon = fileIcon(name?.split('.').pop() || 'file') || <Icon name='file' />
+      const FolderOpenIcon = fileIcon('folderOpen') || <Icons name='folderOpen' />
+      const FolderIcon = fileIcon('folder') || <Icons name='folder' />
+      const OtherIcon = fileIcon(name?.split('.').pop() || 'file') || <Icons name='file' />
       return (
         <div className='file-explorer__node-icon' data-name={name}>
           {droppable ? (isOpen ? FolderOpenIcon : FolderIcon) : OtherIcon}
@@ -136,18 +136,18 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
         {droppable ? (
           <>
             <span onClick={handleAddNode}>
-              <Icon name='addFile' />
+              <Icons name='addFile' />
             </span>
             <span onClick={handleAddFolder}>
-              <Icon name='addFolder' />
+              <Icons name='addFolder' />
             </span>
           </>
         ) : null}
         <span onClick={handleRemoveNode}>
-          <Icon name='delete' />
+          <Icons name='delete' />
         </span>
         <span onClick={handleShowInput}>
-          <Icon name='edit' />
+          <Icons name='edit' />
         </span>
       </div>
     )
@@ -164,7 +164,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
         {droppable &&
           (!iconFunc ? (
             <div className={`file-explorer__node-expand-icon ${isOpen ? 'isOpen' : ''}`}>
-              {switcherIcon || <Icon name='right' />}
+              {switcherIcon || <Icons name='right' />}
             </div>
           ) : (
             switcherIcon(isOpen)

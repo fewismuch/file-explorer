@@ -29,6 +29,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     clickRowAutoExpand = true,
     enableSelect = true,
     showActions = false,
+    allowRepeatText = true,
     titleRender,
     switcherIcon,
     fileIcon,
@@ -43,6 +44,18 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   const handleDrop = (newTree: INode[], options: DropOptions) => {
     onDrop?.(newTree, options)
     const oldNode = findChangedNode(data, newTree)!
+    const newNode = findChangedNode(newTree, data)!
+
+    if (!allowRepeatText) {
+      const existNode = data.find(
+        (n) =>
+          n.parent === newNode.parent &&
+          n.text === oldNode.text &&
+          n.droppable === oldNode.droppable
+      )
+      if (existNode) return
+    }
+
     onChange?.(newTree, {
       action: 'drop',
       oldTree: [...data],
@@ -71,6 +84,17 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       setFileExplorerData(newTree)
       return
     }
+
+    if (!allowRepeatText) {
+      const existNode = data.find(
+        (n) => n.parent === node.parent && n.text === node.text && n.droppable === node.droppable
+      )
+      if (existNode) {
+        handleRemove(node.id, true)
+        return
+      }
+    }
+
     const newNode = {
       ...node,
       id: generateUUID(),
@@ -93,6 +117,15 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       })
       return
     }
+
+    if (!allowRepeatText) {
+      const node = data.find((node) => node.id === id)!
+      const existNode = data.find(
+        (n) => n.parent === node.parent && n.text === value && n.droppable === node.droppable
+      )
+      if (existNode) return
+    }
+
     let oldNode
     const newTree = data.map((node) => {
       if (node.id === id) {
@@ -102,9 +135,9 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
           text: value,
         }
       }
-
       return node
     })
+
     onChange?.(newTree, {
       action: 'update',
       oldTree: [...data],
@@ -144,7 +177,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     edit: (id: string | number) => {
       setEditingNodeId(id)
     },
-    getFiles: () => tree2files(fileExplorerData),
+    getFiles: (rootId = 0) => tree2files(fileExplorerData, rootId),
     openAll: () => treeRef.current?.openAll(),
     closeAll: () => treeRef.current?.closeAll(),
     open: treeRef.current?.open as OpenHandler,
