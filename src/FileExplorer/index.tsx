@@ -152,6 +152,10 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     }
   }
 
+  const handleCancelInput = () => {
+    setEditingNodeId(null)
+  }
+
   useImperativeHandle(fileExplorerRef, () => ({
     addFile: () =>
       handleCreate(
@@ -173,11 +177,12 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
         },
         true
       ),
-    remove: (id: string | number) => handleRemove(id, true),
+    remove: (id: string | number, draft = true) => handleRemove(id, draft),
     edit: (id: string | number) => {
       setEditingNodeId(id)
     },
     getFiles: (rootId = 0) => tree2files(fileExplorerData, rootId),
+    getData: () => fileExplorerData,
     openAll: () => treeRef.current?.openAll(),
     closeAll: () => treeRef.current?.closeAll(),
     open: treeRef.current?.open as OpenHandler,
@@ -216,6 +221,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
               onRemove={handleRemove}
               onTextChange={handleTextChange}
               onCreate={handleCreate}
+              onCancelInput={handleCancelInput}
               dragOverAutoExpand={dragOverAutoExpand}
               clickRowAutoExpand={clickRowAutoExpand}
               titleRender={titleRender}

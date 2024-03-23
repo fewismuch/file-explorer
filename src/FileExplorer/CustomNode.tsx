@@ -5,26 +5,7 @@ import { Icons } from './Icons'
 import { Input } from './Input'
 import { DRAFT_ID } from './utils'
 
-import type { INode } from './types'
-
-interface ICustomNode {
-  node: INode
-  depth: number
-  isSelected?: boolean
-  dragOverAutoExpand?: boolean
-  clickRowAutoExpand?: boolean
-  isOpen?: boolean
-  showInput?: boolean
-  showActions?: boolean
-  onToggle: (id: string | number) => void
-  onTextChange: (id: string | number, value: string) => void
-  onCreate: (node: INode, draft?: boolean) => void
-  onRemove: (id: string | number, draft?: boolean) => void
-  onSelect?: (node: INode) => void
-  titleRender?: (node: INode) => React.ReactNode
-  switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
-  fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
-}
+import type { ICustomNode } from './types'
 
 export const CustomNode: React.FC<ICustomNode> = (props) => {
   const {
@@ -72,6 +53,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
       props.onRemove(id, true)
     }
     setVisibleInput(false)
+    props.onCancelInput?.()
   }
 
   const handleAddNode = (e: React.MouseEvent) => {
@@ -111,8 +93,8 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
   }
 
   const NodeIcon = ({ name }: { name?: string }) => {
-    if (typeof fileIcon === 'boolean') return <div style={{ marginLeft: -4 }}></div>
-    if (!fileIcon) {
+    if (typeof fileIcon === 'boolean' && !fileIcon) return <div style={{ marginLeft: -4 }}></div>
+    if (fileIcon === undefined || fileIcon === true) {
       return (
         <div className='file-explorer__node-icon' data-name={name}>
           {droppable ? <Icons name={isOpen ? 'folderOpen' : 'folder'} /> : <Icons name='file' />}
@@ -135,18 +117,18 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
       <div className='file-explorer__node-actions'>
         {droppable ? (
           <>
-            <span onClick={handleAddNode}>
+            <span onClick={handleAddNode} title='Add file'>
               <Icons name='addFile' />
             </span>
-            <span onClick={handleAddFolder}>
+            <span onClick={handleAddFolder} title='Add folder'>
               <Icons name='addFolder' />
             </span>
           </>
         ) : null}
-        <span onClick={handleRemoveNode}>
+        <span onClick={handleRemoveNode} title='Remove'>
           <Icons name='delete' />
         </span>
-        <span onClick={handleShowInput}>
+        <span onClick={handleShowInput} title='Edit'>
           <Icons name='edit' />
         </span>
       </div>

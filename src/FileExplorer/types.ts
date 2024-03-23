@@ -13,7 +13,12 @@ export interface IFileExplorerMethods {
 
   addFolder(): void
 
-  remove(id: string | number): void
+  /**
+   * 删除节点
+   * @param id
+   * @param draft 是否是草稿态（草稿态为假删除）
+   */
+  remove(id: string | number, draft?: boolean): void
 
   edit(id: string | number): void
 
@@ -35,6 +40,26 @@ export interface INode {
   [propName: string]: any
 }
 
+export interface ICustomNode {
+  node: INode
+  depth: number
+  isSelected?: boolean
+  dragOverAutoExpand?: boolean
+  clickRowAutoExpand?: boolean
+  isOpen?: boolean
+  showInput?: boolean
+  showActions?: boolean
+  onToggle: (id: string | number) => void
+  onTextChange: (id: string | number, value: string) => void
+  onCreate: (node: INode, draft?: boolean) => void
+  onRemove: (id: string | number, draft?: boolean) => void
+  onSelect?: (node: INode) => void
+  onCancelInput?: () => void
+  titleRender?: (node: INode) => React.ReactNode
+  switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
+  fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
+}
+
 export interface IFileExplorerChangeParams {
   action: 'create' | 'update' | 'remove' | 'drop'
   oldTree: INode[]
@@ -52,11 +77,11 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   onSelect?: (node: INode) => void
   // 拖拽事件
   onDrop?: (tree: NodeModel[], options: DropOptions) => void
-  // 拖拽时是否自动展开
+  // 拖拽到文件夹上是否自动展开
   dragOverAutoExpand?: boolean
   // 点击行时是否自动展开
   clickRowAutoExpand?: boolean
-  // 是否运行选择
+  // 是否允许选中
   enableSelect?: boolean
   // 是否展示操作按钮
   showActions?: boolean
