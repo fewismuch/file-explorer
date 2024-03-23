@@ -5,34 +5,63 @@ title: 示例
 
 # 介绍
 
-一个文件浏览器组件，可拖拽可编辑
+一个树形文件浏览器组件，可拖拽可编辑
 
 # 组件示例
 
 ## 基础
 
-这是一个最基础的示例, `rootId` 为根节点id，默认是空字符串`''`, `data` 为树形结构的数据
-
 <code src="./base.tsx"></code>
 
-## 默认展开
+组件数据格式为:
+```tsx | pure
+const treeData = [
+  {
+    id: 1,
+    parent: 0,
+    droppable: true,
+    text: 'Folder 1',
+  },
+  {
+    id: 2,
+    parent: 1,
+    droppable: false,
+    text: 'File1-1',
+  },
+]
+```
 
-<code src="./selected.tsx"></code>
+如果是文件夹对象格式（如下示例），可以使用 `fileExplorerUtils.files2tree(treeData)` 转换
+```tsx | pure
+const filesData = {
+  '/public/index.html': '',
+  '/src/App.tsx': '',
+  '/src/main.tsx': '',
+  '/src/style.css': '',
+  '/package.json': '',
+  '/tsconfig.json': '',
+}
+```
+
+`fileExplorerUtils` 还提供了树形数据和文件对象的相互转换方法，`fileExplorerUtils.tree2files(filesData)`
+
+根据实际情况选择使用，下面示例使用tree格式数据
+
 
 
 ## 自定义渲染
 
 <code src="./customTitle.tsx"></code>
 
-
-## 可拖拽
-
-<code src="./drag.tsx"></code>
-
-## 不可拖拽
+## 不可拖拽不可选中
 
 <code src="./disabledDrag.tsx"></code>
 
-## 完整示例
+## 方法调用
+
+<code src="./event.tsx"></code>
+
+
+## 完整配置项
 
 <code src="./full.tsx"></code>

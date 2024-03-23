@@ -5,9 +5,13 @@ import { treeData } from './treeData'
 
 const App = () => {
   return (
-    <div>
-      <FileExplorer data={treeData} rootId={0} canDrag={() => false} initialOpen={true} />
-    </div>
+    <FileExplorer
+      data={treeData}
+      rootId={0}
+      canDrag={() => false}
+      initialOpen
+      enableSelect={false}
+    />
   )
 }
 export default App

@@ -5,11 +5,7 @@ import { treeData } from './treeData'
 
 const App = () => {
   const Title = ({ node }: { node: INode }) => {
-    return (
-      <span style={{ color: 'blue' }}>
-        {node.id}-{node.text}
-      </span>
-    )
+    return <span style={{ color: 'blue' }}>#{node.text}😎</span>
   }
 
   return (
