@@ -7,8 +7,23 @@ import {
 } from '@rainetian/react-dnd-treeview/pure'
 import React from 'react'
 
+export interface FileMap {
+  [filePath: string]: string | Record<string, any>
+}
+
+export interface INode {
+  id: number | string
+  parent: number | string
+  text: string
+  droppable?: boolean
+
+  // 其他属性
+  [propName: string]: any
+}
+
 export interface IFileExplorerMethods {
-  getFiles(): void
+  getFiles(): FileMap
+  getData(): INode[]
   addFile(): void
 
   addFolder(): void
@@ -28,16 +43,6 @@ export interface IFileExplorerMethods {
   openAll(): void
 
   closeAll(): void
-}
-
-export interface INode {
-  id: number | string
-  parent: number | string
-  text: string
-  droppable?: boolean
-
-  // 其他属性
-  [propName: string]: any
 }
 
 export interface ICustomNode {
@@ -95,8 +100,4 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   selectedId?: string | number | null
   // 是否允许重复名称
   allowRepeatText?: boolean
-}
-
-export interface FileMap {
-  [filePath: string]: string | Record<string, any>
 }
