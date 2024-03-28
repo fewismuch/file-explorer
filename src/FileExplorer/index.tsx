@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 import { CustomNode } from './CustomNode'
+import { Placeholder } from './Placeholder'
 import { IFileExplorer, INode } from './types'
 import { DRAFT_ID, findChangedNode, generateUUID, tree2files } from './utils'
 
@@ -28,9 +29,11 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     dragOverAutoExpand = false,
     clickRowAutoExpand = true,
     enableSelect = true,
+    enableSort = true,
     showActions = false,
     allowRepeatText = true,
     titleRender,
+    actions,
     switcherIcon,
     fileIcon,
     theme,
@@ -227,15 +230,30 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
               titleRender={titleRender}
               showActions={showActions}
               showInput={node.id === editingNodeId}
+              actions={actions}
               fileIcon={fileIcon}
             />
           )}
           onDrop={handleDrop}
           classes={{
             root: 'file-explorer',
-            draggingSource: 'file-explorer__draggingSource',
-            dropTarget: 'file-explorer__dropTarget',
+            draggingSource: enableSort ? 'file-explorer__draggingSource' : '',
+            dropTarget: enableSort ? 'file-explorer__dropTarget' : '',
+            placeholder: enableSort ? '' : 'file-explorer__placeholderContainer',
           }}
+          {...(enableSort
+            ? undefined
+            : {
+                sort: enableSort,
+                insertDroppableFirst: false,
+                dropTargetOffset: 5,
+                placeholderRender: (node, { depth }) => <Placeholder depth={depth} />,
+                canDrop: (tree, { dragSource, dropTargetId }) => {
+                  if (dragSource?.parent === dropTargetId) {
+                    return true
+                  }
+                },
+              })}
           {...rest}
         />
       </DndProvider>
