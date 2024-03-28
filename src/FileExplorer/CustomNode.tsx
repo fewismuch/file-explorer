@@ -17,6 +17,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     titleRender,
     switcherIcon,
     fileIcon,
+    actions,
   } = props
   const { id, droppable, text } = props.node
   const [visibleInput, setVisibleInput] = useState(false)
@@ -182,7 +183,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
           </span>
         )}
 
-        {hover && !showInput && showActions && NodeActions()}
+        {hover && !showInput && showActions && (actions ? actions(props.node) : NodeActions())}
       </div>
     </div>
   )

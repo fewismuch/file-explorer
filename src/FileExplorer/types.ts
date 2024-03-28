@@ -61,6 +61,7 @@ export interface ICustomNode {
   onSelect?: (node: INode) => void
   onCancelInput?: () => void
   titleRender?: (node: INode) => React.ReactNode
+  actions?: (node: INode) => React.ReactNode
   switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
   fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
 }
@@ -72,7 +73,8 @@ export interface IFileExplorerChangeParams {
   newNode?: INode
 }
 
-export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDrop'> {
+type omitTreeProps = 'tree' | 'sort' | 'render' | 'onDrop'
+export interface IFileExplorer extends Omit<TreeProps, omitTreeProps> {
   fileExplorerRef?: React.ForwardedRef<IFileExplorerMethods>
   theme?: 'dark' | 'light'
   data: INode[]
@@ -100,4 +102,7 @@ export interface IFileExplorer extends Omit<TreeProps, 'tree' | 'render' | 'onDr
   selectedId?: string | number | null
   // 是否允许重复名称
   allowRepeatText?: boolean
+  // 是否运行排序
+  enableSort?: boolean
+  actions?: (node: INode) => React.ReactNode
 }
