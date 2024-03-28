@@ -65,3 +65,11 @@ const filesData = {
 ## 完整配置项
 
 <code src="./full.tsx"></code>
+
+## 手动排序
+
+<code src="./sort.tsx"></code>
+
+## 自定义actions
+
+<code src="./actions.tsx"></code>
