@@ -51,7 +51,10 @@ export const Input: React.FC<IInput> = (props) => {
   }, [])
 
   return (
-    <div className='inputWrapper file-explorer__node-actions' onClick={(e) => e.stopPropagation()}>
+    <div
+      className='file-explorer__inputWrapper file-explorer__node-actions'
+      onClick={(e) => e.stopPropagation()}
+    >
       <input
         ref={inputRef}
         className={`textField  nodeInput`}

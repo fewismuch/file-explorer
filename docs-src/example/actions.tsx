@@ -19,10 +19,10 @@ const App = () => {
         initialOpen
         showActions
         actions={(node: INode) => (
-          <>
+          <span onClick={(e) => e.stopPropagation()}>
             <button onClick={() => console.log(node)}>+</button>
             <button onClick={() => console.log(node)}>-</button>
-          </>
+          </span>
         )}
       />
     </div>

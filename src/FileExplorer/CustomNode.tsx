@@ -147,7 +147,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
         {droppable &&
           (!iconFunc ? (
             <div className={`file-explorer__node-expand-icon ${isOpen ? 'isOpen' : ''}`}>
-              {switcherIcon || <Icons name='right' />}
+              {switcherIcon || <Icons name='right' style={{ fontSize: 12 }} />}
             </div>
           ) : (
             switcherIcon(isOpen)

@@ -1,5 +1,7 @@
 div[data-id='file-explorer'],
 div[data-id='file-explorer'][data-theme='light'] {
+  --file-node-font: 'Helvetica Neue', 'Segoe UI', 'Arial', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
   --file-node-hover-bg: rgb(0 0 0 / 4%);
   --file-node-selected-bg: rgb(0 0 0 / 8%);
   --file-node-actions-text-hover: #000;
@@ -22,8 +24,7 @@ div[data-id='file-explorer'][data-theme='dark'] {
 }
 
 .file-explorer {
-  font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', sans-serif;
+  font-family: var(--file-node-font);
 
   ul {
     padding: 0;
@@ -59,8 +60,8 @@ ul.file-explorer {
   &-expand-icon-wrapper {
     position: relative;
     display: flex;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     margin-left: 4px;
     cursor: pointer;
     align-items: center;
@@ -82,10 +83,13 @@ ul.file-explorer {
   }
 
   &-icon {
-    width: 16px;
-    height: 16px;
-    padding-left: 4px;
+    display: flex;
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
 
     & > img {
       max-width: 100%;
@@ -106,8 +110,10 @@ ul.file-explorer {
 
   &-text {
     display: inline-block;
+    height: 18px;
     padding: 0 4px;
     overflow: hidden;
+    line-height: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
     flex: 1;
@@ -118,12 +124,16 @@ ul.file-explorer {
     align-items: center;
     height: 100%;
     flex-shrink: 0;
-    gap: 2px;
 
     & > span {
+      display: flex;
+      width: 18px;
+      height: 18px;
       padding: 4px;
       color: var(--file-node-text-base);
       cursor: pointer;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         color: var(--file-node-actions-text-hover);
@@ -174,40 +184,53 @@ ul.file-explorer {
   }
 }
 
+// 手动排序-拖拽指示线
 .file-explorer__placeholderContainer {
   position: relative;
-}
 
-.file-explorer__placeholder {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 2px;
-  background-color: var(--file-node-border);
-  transform: translateY(-50%);
-}
+  .file-explorer__placeholder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--file-node-border);
+    transform: translateY(-50%);
 
-.file-explorer__dragPreview {
-  display: inline-grid;
-  padding: 4px 8px;
-  font-size: 14px;
-  color: #fff;
-  pointer-events: none;
-  background-color: #1967d2;
-  border-radius: 4px;
-  box-shadow:
-    0 12px 24px -6px rgb(0 0 0 / 25%),
-    0 0 0 1px rgb(0 0 0 / 8%);
-  gap: 8px;
-  grid-template-columns: auto auto;
-
-  .file-explorer__dragPreviewLabel {
-    align-items: center;
-    display: flex;
+    &::after {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid var(--file-node-border);
+      content: '';
+    }
   }
 }
 
-.inputWrapper {
+//.file-explorer__dragPreview {
+//  display: inline-grid;
+//  padding: 4px 8px;
+//  font-size: 14px;
+//  color: #fff;
+//  pointer-events: none;
+//  background-color: #1967d2;
+//  border-radius: 4px;
+//  box-shadow:
+//    0 12px 24px -6px rgb(0 0 0 / 25%),
+//    0 0 0 1px rgb(0 0 0 / 8%);
+//  gap: 8px;
+//  grid-template-columns: auto auto;
+//  .file-explorer__dragPreviewLabel {
+//    align-items: center;
+//    display: flex;
+//  }
+//}
+
+// 编辑框
+.file-explorer__inputWrapper {
   width: 100%;
   padding: 0 1px;
 
@@ -216,8 +239,7 @@ ul.file-explorer {
     height: calc(100% - 12px);
     min-height: 20px;
     margin-left: 1px;
-    font-family: 'Helvetica Neue', 'Segoe UI', Arial, 'PingFang SC', 'Hiragino Sans GB',
-      'Microsoft YaHei', sans-serif;
+    font-family: var(--file-node-font);
     font-size: inherit;
     background-color: transparent;
     border: 1px solid var(--file-node-border);
