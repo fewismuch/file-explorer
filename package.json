@@ -1,6 +1,6 @@
 {
   "name": "@rainetian/file-explorer",
-  "version": "0.1.16-alpha.4",
+  "version": "0.1.16-alpha.5",
   "description": "a file explorer component",
   "license": "MIT",
   "module": "dist/index.js",

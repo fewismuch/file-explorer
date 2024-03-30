@@ -27,6 +27,8 @@ const App = () => {
         <button onClick={() => console.log(fileExplorerRef.current?.getData())}>getData</button>
         <button onClick={() => fileExplorerRef.current?.edit(2)}>edit File1</button>
         <button onClick={() => fileExplorerRef.current?.remove(3, false)}>remove File2</button>
+        <button onClick={() => fileExplorerRef.current?.open(1)}>open Folder1</button>
+        <button onClick={() => fileExplorerRef.current?.close(1)}>close Folder1</button>
       </div>
       <div style={{ width: 300, border: '1px solid #ccc' }}>
         <FileExplorer
