@@ -207,7 +207,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
 
   return (
     <div data-id='file-explorer' data-theme={theme}>
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={HTML5Backend} context={window}>
         <Tree
           ref={treeRef}
           tree={fileExplorerData}
