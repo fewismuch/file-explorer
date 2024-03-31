@@ -18,11 +18,12 @@ const App = () => {
         onChange={handleChange}
         initialOpen
         showActions
-        actions={(node: INode) => (
-          <span onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => console.log(node)}>+</button>
-            <button onClick={() => console.log(node)}>-</button>
-          </span>
+        actions={(node: INode, { remove, edit }) => (
+          <>
+            {remove}
+            <button onClick={() => alert('remove')}>x</button>
+            {edit}
+          </>
         )}
       />
     </div>

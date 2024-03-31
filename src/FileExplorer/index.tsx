@@ -50,9 +50,18 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     const newNode = findChangedNode(newTree, data)!
 
     if (!allowRepeatText) {
+      // 不允许重复且没有新节点 = 同级目录内排序
+      if (!newNode) {
+        onChange?.(newTree, {
+          action: 'sort',
+          oldTree: [...data],
+          oldNode,
+        })
+        return
+      }
       const existNode = data.find(
         (n) =>
-          n.parent === newNode.parent &&
+          n.parent === newNode?.parent &&
           n.text === oldNode.text &&
           n.droppable === oldNode.droppable
       )

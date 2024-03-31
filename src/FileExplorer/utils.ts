@@ -22,14 +22,14 @@ export const findChangedNode = (currentArray: INode[], newArray: INode[]) => {
   return node
 }
 
-export function files2tree(files: FileMap): INode[] {
+export function files2tree(files: FileMap, rootId: number | string = 0): INode[] {
   const tree: INode[] = []
   const folders: { [folderPath: string]: number } = {}
 
   // 构建文件夹路径映射
   for (const filePath in files) {
     const parts = filePath.startsWith('/') ? filePath.slice(1).split('/') : filePath.split('/')
-    let parent = 0
+    let parent = rootId
     for (let i = 0; i < parts.length - 1; i++) {
       const folderPath = parts.slice(0, i + 1).join('/')
       if (!folders[folderPath]) {
@@ -60,7 +60,7 @@ export function files2tree(files: FileMap): INode[] {
   return tree
 }
 
-export function tree2files(tree: INode[], rootId = 0): FileMap {
+export function tree2files(tree: INode[], rootId: number | string = 0): FileMap {
   const files: FileMap = {}
 
   // 构建文件路径和对应的值映射

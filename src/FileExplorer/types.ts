@@ -61,19 +61,23 @@ export interface ICustomNode {
   onSelect?: (node: INode) => void
   onCancelInput?: () => void
   titleRender?: (node: INode) => React.ReactNode
-  actions?: (node: INode) => React.ReactNode
+  actions?: (
+    node: INode,
+    actions: { remove: React.ReactNode; edit: React.ReactNode }
+  ) => React.ReactNode
   switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
   fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
 }
 
 export interface IFileExplorerChangeParams {
-  action: 'create' | 'update' | 'remove' | 'drop'
+  action: 'create' | 'update' | 'remove' | 'drop' | 'sort'
   oldTree: INode[]
   oldNode?: INode
   newNode?: INode
 }
 
 type omitTreeProps = 'tree' | 'sort' | 'render' | 'onDrop'
+
 export interface IFileExplorer extends Omit<TreeProps, omitTreeProps> {
   fileExplorerRef?: React.ForwardedRef<IFileExplorerMethods>
   theme?: 'dark' | 'light'

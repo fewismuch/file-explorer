@@ -57,18 +57,11 @@ export const Input: React.FC<IInput> = (props) => {
     >
       <input
         ref={inputRef}
-        className={`textField  nodeInput`}
         value={labelText}
         onChange={handleChangeText}
         onBlur={handleSubmit}
         onKeyDown={handleKeyDown}
       />
-      {/* <span onClick={handleSubmit}>
-        <Icon name='check'/>
-      </span>
-      <span onClick={handleCancel}>
-        <Icon name='close'/>
-      </span> */}
     </div>
   )
 }

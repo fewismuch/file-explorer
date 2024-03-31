@@ -113,25 +113,40 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     }
   }
 
+  const customNodeAction = {
+    addFile: (
+      <span onClick={handleAddNode} title='Add file'>
+        <Icons name='addFile' />
+      </span>
+    ),
+    addFolder: (
+      <span onClick={handleAddFolder} title='Add folder'>
+        <Icons name='addFolder' />
+      </span>
+    ),
+    remove: (
+      <span onClick={handleRemoveNode} title='Remove'>
+        <Icons name='delete' />
+      </span>
+    ),
+    edit: (
+      <span onClick={handleShowInput} title='Edit'>
+        <Icons name='edit' />
+      </span>
+    ),
+  }
+
   const NodeActions = () => {
     return (
       <div className='file-explorer__node-actions'>
         {droppable ? (
           <>
-            <span onClick={handleAddNode} title='Add file'>
-              <Icons name='addFile' />
-            </span>
-            <span onClick={handleAddFolder} title='Add folder'>
-              <Icons name='addFolder' />
-            </span>
+            {customNodeAction.addFile}
+            {customNodeAction.addFolder}
           </>
         ) : null}
-        <span onClick={handleRemoveNode} title='Remove'>
-          <Icons name='delete' />
-        </span>
-        <span onClick={handleShowInput} title='Edit'>
-          <Icons name='edit' />
-        </span>
+        {customNodeAction.remove}
+        {customNodeAction.edit}
       </div>
     )
   }
@@ -183,7 +198,18 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
           </span>
         )}
 
-        {hover && !showInput && showActions && (actions ? actions(props.node) : NodeActions())}
+        {hover && !showInput && showActions ? (
+          actions ? (
+            <div className='file-explorer__node-actions' onClick={(e) => e.stopPropagation()}>
+              {actions(props.node, {
+                remove: customNodeAction.remove,
+                edit: customNodeAction.edit,
+              })}
+            </div>
+          ) : (
+            NodeActions()
+          )
+        ) : null}
       </div>
     </div>
   )

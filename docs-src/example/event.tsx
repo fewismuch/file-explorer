@@ -30,7 +30,7 @@ const App = () => {
         <button onClick={() => fileExplorerRef.current?.open(1)}>open Folder1</button>
         <button onClick={() => fileExplorerRef.current?.close(1)}>close Folder1</button>
       </div>
-      <div style={{ width: 300, border: '1px solid #ccc' }}>
+      <div style={{ width: 300, border: '1px solid #ccc', padding: 12 }}>
         <FileExplorer
           fileExplorerRef={fileExplorerRef}
           data={data}
