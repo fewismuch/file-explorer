@@ -66,7 +66,7 @@ export interface ICustomNode {
     actions: { remove: React.ReactNode; edit: React.ReactNode }
   ) => React.ReactNode
   switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
-  fileIcon?: ((fileSuffix: string) => React.ReactNode) | boolean
+  fileIcon?: ((fileSuffix: string, node: INode) => React.ReactNode) | boolean
 }
 
 export interface IFileExplorerChangeParams {

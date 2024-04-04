@@ -48,6 +48,9 @@ const filesData = {
 根据实际情况选择使用，下面示例使用tree格式数据
 
 
+## 自定义文件图标
+
+<code src="./icons.tsx"></code>
 
 ## 自定义渲染
 

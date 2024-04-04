@@ -5,7 +5,7 @@ import { Icons } from './Icons'
 import { Input } from './Input'
 import { DRAFT_ID } from './utils'
 
-import type { ICustomNode } from './types'
+import type { ICustomNode, INode } from './types'
 
 export const CustomNode: React.FC<ICustomNode> = (props) => {
   const {
@@ -93,7 +93,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
     props.onRemove(id)
   }
 
-  const NodeIcon = ({ name }: { name?: string }) => {
+  const NodeIcon = ({ name, node }: { name: string; node: INode }) => {
     if (typeof fileIcon === 'boolean' && !fileIcon) return <div style={{ marginLeft: -4 }}></div>
     if (fileIcon === undefined || fileIcon === true) {
       return (
@@ -102,9 +102,9 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
         </div>
       )
     } else {
-      const FolderOpenIcon = fileIcon('folderOpen') || <Icons name='folderOpen' />
-      const FolderIcon = fileIcon('folder') || <Icons name='folder' />
-      const OtherIcon = fileIcon(name?.split('.').pop() || 'file') || <Icons name='file' />
+      const FolderOpenIcon = fileIcon('folderOpen', node) || <Icons name='folderOpen' />
+      const FolderIcon = fileIcon('folder', node) || <Icons name='folder' />
+      const OtherIcon = fileIcon(name?.split('.').pop() || 'file', node) || <Icons name='file' />
       return (
         <div className='file-explorer__node-icon' data-name={name}>
           {droppable ? (isOpen ? FolderOpenIcon : FolderIcon) : OtherIcon}
@@ -187,7 +187,7 @@ export const CustomNode: React.FC<ICustomNode> = (props) => {
       onClick={handleSelectNode}
     >
       {SwitcherIcon()}
-      {NodeIcon({ name: text })}
+      {NodeIcon({ name: text, node: props.node })}
 
       <div className='file-explorer__node-content'>
         {showInput ? (

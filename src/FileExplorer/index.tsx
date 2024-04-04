@@ -139,13 +139,15 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
     }
 
     let oldNode
+    let newNode
     const newTree = data.map((node) => {
       if (node.id === id) {
         oldNode = node
-        return {
+        newNode = {
           ...node,
           text: value,
         }
+        return newNode
       }
       return node
     })
@@ -154,6 +156,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       action: 'update',
       oldTree: [...data],
       oldNode: oldNode!,
+      newNode,
     })
   }
 
