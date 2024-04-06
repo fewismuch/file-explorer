@@ -72,6 +72,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
       action: 'drop',
       oldTree: [...data],
       oldNode,
+      newNode,
     })
   }
 
@@ -91,6 +92,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }
 
   const handleCreate = (node: INode, draft?: boolean) => {
+    console.log(123)
     let newTree = [...data, node]
     if (draft) {
       setFileExplorerData(newTree)
@@ -172,22 +174,22 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }
 
   useImperativeHandle(fileExplorerRef, () => ({
-    addFile: () =>
+    addFile: (parent?: string | number) =>
       handleCreate(
         {
           id: DRAFT_ID,
           text: '',
-          parent: rootId,
+          parent: parent ?? rootId,
           droppable: false,
         },
         true
       ),
-    addFolder: () =>
+    addFolder: (parent?: string | number) =>
       handleCreate(
         {
           id: DRAFT_ID,
           text: '',
-          parent: rootId,
+          parent: parent ?? rootId,
           droppable: true,
         },
         true

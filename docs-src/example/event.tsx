@@ -18,9 +18,10 @@ const App = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
         <button onClick={() => fileExplorerRef.current?.addFile()}>add file</button>
         <button onClick={() => fileExplorerRef.current?.addFolder()}>add folder</button>
+        <button onClick={() => fileExplorerRef.current?.addFile(1)}>add file in Folder1</button>
         <button onClick={() => fileExplorerRef.current?.closeAll()}>closeAll</button>
         <button onClick={() => fileExplorerRef.current?.openAll()}>openAll</button>
         <button onClick={() => console.log(fileExplorerRef.current?.getFiles())}>getFiles</button>

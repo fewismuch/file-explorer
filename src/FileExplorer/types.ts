@@ -24,9 +24,9 @@ export interface INode {
 export interface IFileExplorerMethods {
   getFiles(): FileMap
   getData(): INode[]
-  addFile(): void
+  addFile(parent?: string | number): void
 
-  addFolder(): void
+  addFolder(parent?: string | number): void
 
   /**
    * 删除节点
@@ -43,30 +43,6 @@ export interface IFileExplorerMethods {
   openAll(): void
 
   closeAll(): void
-}
-
-export interface ICustomNode {
-  node: INode
-  depth: number
-  isSelected?: boolean
-  dragOverAutoExpand?: boolean
-  clickRowAutoExpand?: boolean
-  isOpen?: boolean
-  showInput?: boolean
-  showActions?: boolean
-  onToggle: (id: string | number) => void
-  onTextChange: (id: string | number, value: string) => void
-  onCreate: (node: INode, draft?: boolean) => void
-  onRemove: (id: string | number, draft?: boolean) => void
-  onSelect?: (node: INode) => void
-  onCancelInput?: () => void
-  titleRender?: (node: INode) => React.ReactNode
-  actions?: (
-    node: INode,
-    actions: { remove: React.ReactNode; edit: React.ReactNode }
-  ) => React.ReactNode
-  switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
-  fileIcon?: ((fileSuffix: string, node: INode) => React.ReactNode) | boolean
 }
 
 export interface IFileExplorerChangeParams {
@@ -101,12 +77,35 @@ export interface IFileExplorer extends Omit<TreeProps, omitTreeProps> {
   // 自定义折叠图标
   switcherIcon?: ((isOpen: boolean) => React.ReactNode) | React.ReactNode
   // 自定义图标/是否显示图标
-  fileIcon?: ((fileSuffix: 'file' | 'folder' | 'folderOpen' | string) => React.ReactNode) | boolean
+  fileIcon?: ((fileSuffix: string, node: INode) => React.ReactNode | null) | boolean
   // 选中的ID
   selectedId?: string | number | null
   // 是否允许重复名称
   allowRepeatText?: boolean
   // 是否运行排序
   enableSort?: boolean
-  actions?: (node: INode) => React.ReactNode
+  actions?: (
+    node: INode,
+    actions: { remove: React.ReactNode; edit: React.ReactNode }
+  ) => React.ReactNode | null
+}
+
+export interface ICustomNode
+  extends Pick<
+    IFileExplorer,
+    'showActions' | 'titleRender' | 'actions' | 'switcherIcon' | 'fileIcon'
+  > {
+  node: INode
+  depth: number
+  isSelected?: boolean
+  dragOverAutoExpand?: boolean
+  clickRowAutoExpand?: boolean
+  isOpen?: boolean
+  showInput?: boolean
+  onToggle: (id: string | number) => void
+  onTextChange: (id: string | number, value: string) => void
+  onCreate: (node: INode, draft?: boolean) => void
+  onRemove: (id: string | number, draft?: boolean) => void
+  onSelect?: (node: INode) => void
+  onCancelInput?: () => void
 }

@@ -51,7 +51,8 @@ export function files2tree(files: FileMap, rootId: number | string = 0): INode[]
     tree.push({
       id: fileId,
       parent,
-      droppable: false,
+      // @ts-ignore
+      droppable: files[filePath]?.code === '//#folder#//',
       text: fileName,
       content: files[filePath],
     })
