@@ -92,7 +92,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   }
 
   const handleCreate = (node: INode, draft?: boolean) => {
-    console.log(123)
+    treeRef.current?.open(node.parent)
     let newTree = [...data, node]
     if (draft) {
       setFileExplorerData(newTree)
