@@ -11,7 +11,7 @@ title: 示例
 
 ## 基础
 
-<code src="./base.tsx"></code>
+<code src="./code/base.tsx"></code>
 
 组件数据格式为:
 ```tsx | pure
@@ -50,29 +50,29 @@ const filesData = {
 
 ## 自定义文件图标
 
-<code src="./icons.tsx"></code>
+<code src="./code/icons.tsx"></code>
 
 ## 自定义渲染
 
-<code src="./customTitle.tsx"></code>
+<code src="./code/customTitle.tsx"></code>
 
 ## 不可拖拽不可选中
 
-<code src="./disabledDrag.tsx"></code>
+<code src="./code/disabledDrag.tsx"></code>
 
 ## 方法调用
 
-<code src="./event.tsx"></code>
+<code src="./code/event.tsx"></code>
 
 
 ## 完整配置项
 
-<code src="./full.tsx"></code>
+<code src="./code/full.tsx"></code>
 
 ## 手动排序
 
-<code src="./sort.tsx"></code>
+<code src="./code/sort.tsx"></code>
 
 ## 自定义actions
 
-<code src="./actions.tsx"></code>
+<code src="./code/actions.tsx"></code>
