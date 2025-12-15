@@ -1,6 +1,6 @@
 # file-explorer
 
-[![NPM version](https://img.shields.io/npm/v/@carbontian/file-explorer.svg?style=flat)](https://npmjs.org/package/file-explorer)
+[![NPM version](https://img.shields.io/npm/v/@rainetian/file-explorer.svg?style=flat)](https://npmjs.org/package/file-explorer)
 
 ## Overview
 
@@ -16,6 +16,8 @@
 - 🎨 主题支持（暗色/亮色）
 - 📱 响应式设计
 - 🧩 丰富的API和自定义选项
+
+[点击查看示例](https://fewismuch.github.io/file-explorer/)
 
 ## Installation
 
@@ -123,10 +125,6 @@ interface INode {
 - `close(id: string | number)` - 折叠节点
 - `openAll()` - 展开所有节点
 - `closeAll()` - 折叠所有节点
-
-## Examples
-
-点击查看 [example](https://fewismuch.github.io/file-explorer/) 目录获取更多使用示例：
 
 ## Development
 

@@ -48,6 +48,10 @@ ul.file-explorer {
   align-items: center;
   color: var(--file-node-text-base);
 
+  .file-explorer__node-text:active + .file-explorer__node-actions {
+    display: none;
+  }
+
   &--hover {
     color: var(--file-node-text-hover);
     background-color: var(--file-node-hover-bg);
@@ -144,6 +148,7 @@ ul.file-explorer {
   }
 }
 
+// 拖拽中样式
 .file-explorer__draggingSource {
   .file-explorer__node-text {
     // 拖拽中样式

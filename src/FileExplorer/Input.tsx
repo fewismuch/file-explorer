@@ -48,11 +48,12 @@ export const Input: React.FC<IInput> = (props) => {
 
   useEffect(() => {
     inputRef?.current?.focus()
+    inputRef?.current?.select()
   }, [])
 
   return (
     <div
-      className='file-explorer__inputWrapper file-explorer__node-actions'
+      className='file-explorer__node-actions file-explorer__inputWrapper '
       onClick={(e) => e.stopPropagation()}
     >
       <input
