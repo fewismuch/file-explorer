@@ -11,7 +11,6 @@ const App = () => {
   return (
     <FileExplorer
       data={treeData}
-      rootId={0}
       titleRender={(node: INode) => <Title node={node} />}
       switcherIcon={<span>▶️</span>}
       fileIcon={false}

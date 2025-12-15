@@ -37,7 +37,6 @@ const App = () => {
           data={data}
           onChange={handleChange}
           onSelect={(node: INode) => console.log(node)}
-          rootId={0}
           showActions
           initialOpen
         />

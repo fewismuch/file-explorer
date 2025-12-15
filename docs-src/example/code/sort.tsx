@@ -13,14 +13,7 @@ const App = () => {
 
   return (
     <div style={{ width: 250, border: '1px solid #ccc', padding: 12 }}>
-      <FileExplorer
-        data={data}
-        rootId={0}
-        onChange={handleChange}
-        initialOpen
-        enableSort={false}
-        allowRepeatText={false}
-      />
+      <FileExplorer data={data} initialOpen enableSort={false} allowRepeatText={false} />
     </div>
   )
 }

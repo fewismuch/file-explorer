@@ -18,13 +18,7 @@ const App = () => {
 
   return (
     <div style={{ width: 250, border: '1px solid #ccc', padding: 12 }}>
-      <FileExplorer
-        data={data}
-        rootId={0}
-        onChange={handleChange}
-        initialOpen
-        fileIcon={fileIcon}
-      />
+      <FileExplorer data={data} onChange={handleChange} initialOpen fileIcon={fileIcon} />
     </div>
   )
 }

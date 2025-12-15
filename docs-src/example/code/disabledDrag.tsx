@@ -4,14 +4,6 @@ import React from 'react'
 import { treeData } from './treeData'
 
 const App = () => {
-  return (
-    <FileExplorer
-      data={treeData}
-      rootId={0}
-      canDrag={() => false}
-      initialOpen
-      enableSelect={false}
-    />
-  )
+  return <FileExplorer data={treeData} canDrag={() => false} initialOpen enableSelect={false} />
 }
 export default App

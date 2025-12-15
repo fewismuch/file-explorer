@@ -14,7 +14,6 @@ const App = () => {
     <div style={{ width: 250, border: '1px solid #ccc', padding: 12 }}>
       <FileExplorer
         data={data}
-        rootId={0}
         onChange={handleChange}
         initialOpen
         showActions
