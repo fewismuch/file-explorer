@@ -11,14 +11,8 @@ const App = () => {
   }
 
   const fileIcon = (fileSuffix: string) => {
-    const iconMap: Record<string, string> = {
-      js: 'https://img.icons8.com/color/48/000000/javascript.png',
-      css: 'https://img.icons8.com/color/48/000000/css3.png',
-      html: 'https://img.icons8.com/color/48/000000/html-5.png',
-      json: 'https://img.icons8.com/color/48/000000/json.png',
-      tsx: 'https://img.icons8.com/color/48/000000/typescript.png',
-    }
-    const iconSrc = iconMap[fileSuffix]
+    // 提供了一个获取icon8 图标url的方法，可根据文件后缀自定义图标
+    const iconSrc = fileExplorerUtils.getFileIcon8Url(fileSuffix)
     return iconSrc ? <img src={iconSrc} /> : null
   }
 

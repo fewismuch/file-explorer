@@ -1,6 +1,6 @@
 {
   "name": "@rainetian/file-explorer",
-  "version": "0.1.18",
+  "version": "0.2.0",
   "description": "a file explorer component",
   "license": "MIT",
   "module": "dist/index.js",
@@ -44,8 +44,7 @@
     ]
   },
   "dependencies": {
-    "@rainetian/react-dnd-treeview": "^1.0.0",
-    "react-dnd": "^16.0.1"
+    "@rainetian/react-dnd-treeview": "^3.5.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
@@ -57,7 +56,7 @@
     "ahooks": "^3.7.10",
     "autoprefixer": "^10.4.17",
     "dumi": "^2.0.2",
-    "father": "^4.1.0",
+    "father": "^4.6.9",
     "husky": "^8.0.1",
     "less": "^4.2.0",
     "lint-staged": "^13.0.3",
@@ -69,6 +68,7 @@
   },
   "peerDependencies": {
     "react": ">=16.9.0",
+    "react-dnd": "^16.0.1",
     "react-dom": ">=16.9.0"
   },
   "publishConfig": {

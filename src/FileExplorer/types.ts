@@ -90,11 +90,10 @@ export interface IFileExplorer extends Omit<TreeProps, omitTreeProps> {
   ) => React.ReactNode | null
 }
 
-export interface ICustomNode
-  extends Pick<
-    IFileExplorer,
-    'showActions' | 'titleRender' | 'actions' | 'switcherIcon' | 'fileIcon'
-  > {
+export interface ICustomNode extends Pick<
+  IFileExplorer,
+  'showActions' | 'titleRender' | 'actions' | 'switcherIcon' | 'fileIcon'
+> {
   node: INode
   depth: number
   isSelected?: boolean
