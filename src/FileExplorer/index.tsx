@@ -21,7 +21,7 @@ export const FileExplorer: React.FC<IFileExplorer> = (props) => {
   const treeRef = useRef<TreeMethods>(null)
   const {
     fileExplorerRef,
-    rootId,
+    rootId = 0,
     data,
     onDrop,
     onChange,

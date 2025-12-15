@@ -52,12 +52,13 @@ export interface IFileExplorerChangeParams {
   newNode?: INode
 }
 
-type omitTreeProps = 'tree' | 'sort' | 'render' | 'onDrop'
+type omitTreeProps = 'tree' | 'sort' | 'render' | 'onDrop' | 'rootId'
 
 export interface IFileExplorer extends Omit<TreeProps, omitTreeProps> {
   fileExplorerRef?: React.ForwardedRef<IFileExplorerMethods>
   theme?: 'dark' | 'light'
   data: INode[]
+  rootId?: NodeModel['id']
   // 变更事件
   onChange?: (newTree: INode[], changeParams: IFileExplorerChangeParams) => void
   // 选中事件
