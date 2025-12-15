@@ -48,7 +48,7 @@ const App = () => {
   }
 
   return (
-    <div style={{ width: 250, border: '1px solid #ccc', padding: 12 }}>
+    <div style={{ width: 250 }}>
       <FileExplorer data={data} rootId={0} onChange={handleChange} initialOpen />
     </div>
   )
@@ -126,15 +126,7 @@ interface INode {
 
 ## Examples
 
-查看 [`docs-src/example`](./docs-src/example) 目录获取更多使用示例：
-
-- [基础用法](./docs-src/example/code/base.tsx)
-- [自定义标题](./docs-src/example/code/customTitle.tsx)
-- [禁用拖拽](./docs-src/example/code/disabledDrag.tsx)
-- [事件处理](./docs-src/example/code/event.tsx)
-- [完整功能](./docs-src/example/code/full.tsx)
-- [图标定制](./docs-src/example/code/icons.tsx)
-- [排序功能](./docs-src/example/code/sort.tsx)
+点击查看 [example](https://fewismuch.github.io/file-explorer/) 目录获取更多使用示例：
 
 ## Development
 
